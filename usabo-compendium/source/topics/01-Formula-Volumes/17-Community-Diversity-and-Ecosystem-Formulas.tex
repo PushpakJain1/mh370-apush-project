@@ -1,0 +1,32 @@
+\input{preamble}
+\input{partnames}
+\input{memomacros}
+\input{sheetstyle}
+\makeindex[title={Index of This Volume},columns=2,intoc]
+\begin{document}
+\begin{titlepage}\thispagestyle{empty}
+\vspace*{0.14\textheight}
+\noindent{\color{tiercore}\rule{\textwidth}{5pt}}\\[3pt]
+\noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[26pt]
+\noindent{\sffamily\bfseries\fontsize{11}{14}\selectfont\color{bionum}THE FORMULA VOLUMES}\\[12pt]
+\noindent\begin{minipage}{\textwidth}\raggedright
+{\sffamily\bfseries\fontsize{28}{32}\selectfont\color{bioink}%
+ \hyphenchar\font=-1\hyphenpenalty=10000\exhyphenpenalty=10000 Community, Diversity, and Ecosystem Formulas\par}\end{minipage}\\[16pt]
+\noindent{\color{biogreen}\rule{\textwidth}{1.4pt}}\\[10pt]
+\noindent\begin{minipage}{\textwidth}\raggedright
+{\fontsize{10.5}{14}\selectfont\color{biogreen}%
+Part one derives every formula, states its conditions, and works the calculations. Part two is the
+bare formula sheet for the same material. The index at the back covers both.\par}\end{minipage}
+\vfill
+\noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[3pt]
+\noindent{\color{tiercore}\rule{\textwidth}{5pt}}
+\end{titlepage}
+\tableofcontents
+\clearpage
+\memtier{Part One. Learn It}
+\InputIfFileExists{sections/f17-ecosystem}{}{}
+\memtier{Part Two. Memorize It}
+\InputIfFileExists{memo/f17-ecosystem}{}{}
+\clearpage
+\printindex
+\end{document}
