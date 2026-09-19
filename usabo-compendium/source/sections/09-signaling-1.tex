@@ -1,0 +1,753 @@
+\parttitle[signaling]{Cell Signaling and Signal Transduction}{Receptors, second messengers, cascades, and the logic that makes a cell respond to one molecule in a billion.}
+
+\section{Why cells signal, the four stages, and the distance classes}
+
+A cell is a closed chemical factory with a hydrophobic wall $3$ to $4\ \mathrm{nm}$
+thick across which almost nothing polar diffuses. Everything an animal cell knows
+about the outside world it learns from proteins that straddle or cross that wall, or
+from the small minority of ligands lipid-soluble enough to walk through it. The whole
+subject of signal transduction is the engineering answer to one problem: how does a
+$180\ \mathrm{Da}$ molecule at $10^{-10}\ \mathrm{M}$ outside a cell change the
+activity of an enzyme at $10^{-5}\ \mathrm{M}$ inside it, in seconds, without any of
+the signal molecule ever entering?
+
+\begin{keybox}[title={MEMORIZE: the four stages of cell signalling}]
+\nr{09-signaling-four-stages}{Four stages of cell signalling}
+\begin{enumerate}
+\item \tm{Synthesis and release} by the signalling cell, then transport to the target.
+\item \tm{Reception}: the \tm{ligand} (first messenger) binds a \tm{receptor} with
+high affinity and high specificity; binding is non-covalent and reversible.
+\item \tm{Transduction}: a conformational change in the receptor is converted into an
+intracellular change, usually a relay of $2$ to $5$ steps involving \tm{second
+messengers} and \tm{protein kinases}, with gain at each step.
+\item \tm{Response}: altered enzyme activity (milliseconds to seconds), altered
+cytoskeleton or transport (seconds), or altered transcription (minutes to hours).
+\end{enumerate}
+A fifth stage, \tm{termination}, is required for the system to be a signal at all,
+and the exam treats it as part of the cycle rather than an afterthought.
+\end{keybox}
+
+Earl Sutherland's formulation is still the cleanest: reception, transduction,
+response. Modern texts split synthesis off the front and termination off the back.
+Both countings appear in USABO answer keys, so if a question asks "how many stages"
+read the choices and pick the one that matches the list the choices describe.
+
+\begin{thmbox}[title={PRINCIPLE: the response is a property of the target, not the signal}]
+\nr{09-signaling-target-determines-response}{Target determines the response}
+The same ligand produces different outcomes in different cells because the outcome is
+set by the receptor subtype present, the G protein it couples to, and the downstream
+effectors expressed. Epinephrine at $10^{-8}\ \mathrm{M}$ dilates skeletal muscle
+arterioles ($\beta_2$, cAMP up, relaxation) and constricts skin arterioles
+($\alpha_1$, \ce{IP3} and \ce{Ca^2+} up, contraction). One molecule, opposite
+mechanical results, in the same animal at the same instant.
+\end{thmbox}
+
+\begin{defbox}[title={DEFINITIONS: distance classes of signalling}]
+\nr{09-signaling-distance-classes}{Distance classes of signalling}
+\begin{description}
+\item[Intracrine] The ligand acts inside the cell that made it, never leaving it.
+\item[Autocrine] The cell responds to its own secretion. Growth-factor autocrine
+loops are a hallmark of tumours; activated T cells make \ce{IL-2} and carry the
+\ce{IL-2} receptor.
+\item[Juxtacrine (contact-dependent)] Membrane-anchored ligand on one cell binds a
+receptor on a touching cell; range is the $20\ \mathrm{nm}$ of a cleft. Notch--Delta
+is the archetype.
+\item[Paracrine] Local diffusion, effective over $20$ to $200\ \mathrm{\mu m}$ and
+$0.1$ to $10\ \mathrm{s}$, terminated by extracellular enzymes and by dilution.
+\item[Synaptic] A specialised paracrine case: $20$ to $40\ \mathrm{nm}$ cleft,
+transit time $\approx 0.1\ \mathrm{ms}$, cleft ligand reaching $0.1$ to
+$1\ \mathrm{mM}$ transiently.
+\item[Endocrine] Bloodborne, $0.1\ \mathrm{m}$ to $2\ \mathrm{m}$, latency seconds to
+hours, plasma concentrations typically $10^{-12}$ to $10^{-8}\ \mathrm{M}$.
+\item[Pheromonal] Between organisms, through air or water; the silkmoth responds to
+bombykol at an estimated $10^{-13}\ \mathrm{g\,mL^{-1}}$ of air.
+\end{description}
+\end{defbox}
+
+\begin{tabular}{@{}lllp{3.0cm}@{}}
+\toprule
+\textbf{Class} & \textbf{Range} & \textbf{Latency} & \textbf{Ligand concentration at target}\\
+\midrule
+Juxtacrine & $20\ \mathrm{nm}$ & $<1\ \mathrm{s}$ & effectively local, not diffusible\\
+Synaptic & $20$--$40\ \mathrm{nm}$ & $0.1$--$2\ \mathrm{ms}$ & $10^{-4}$--$10^{-3}\ \mathrm{M}$ peak\\
+Paracrine & $20$--$200\ \mathrm{\mu m}$ & $0.1$--$10\ \mathrm{s}$ & $10^{-9}$--$10^{-7}\ \mathrm{M}$\\
+Endocrine & $0.1$--$2\ \mathrm{m}$ & $\mathrm{s}$--$\mathrm{h}$ & $10^{-12}$--$10^{-8}\ \mathrm{M}$\\
+\bottomrule
+\end{tabular}
+
+Diffusion sets the boundary between paracrine and endocrine, and the arithmetic is
+worth carrying. For a small protein with $D \approx 10^{-10}\ \mathrm{m^2\,s^{-1}}$,
+the mean square displacement in three dimensions is $\langle x^2 \rangle = 6Dt$, so
+$20\ \mathrm{\mu m}$ takes $t = (2\times10^{-5})^2/(6\times10^{-10}) \approx
+0.7\ \mathrm{s}$, while $2\ \mathrm{mm}$ would take $6700\ \mathrm{s}$, nearly two
+hours. Diffusion is fine for a cell diameter and hopeless for a body; hence a
+circulation.
+
+\begin{obsbox}[title={WORTH NOTICING: one molecule in a billion}]
+\nr{09-signaling-sensitivity-numbers}{Sensitivity of signalling systems}
+A hepatocyte holds roughly $10^{11}$ molecules of water and responds to epinephrine at
+$10^{-10}\ \mathrm{M}$, about $6\times10^{4}$ ligand molecules in the volume
+surrounding one cell, occupying perhaps $1\%$ of its $10^{4}$ receptors. A rod
+photoreceptor responds detectably to a \emph{single} photon isomerising one of its
+$10^{8}$ rhodopsins, a fractional occupancy of $10^{-8}$. Signalling is the biological
+example of an amplifier with a gain above $10^{5}$ and a noise floor near one event.
+\end{obsbox}
+
+\begin{warnbox}[title={TRAP: reception does not have to happen at the surface}]
+\nr{09-signaling-intracellular-receptors-trap}{Intracellular receptors}
+The wrong belief: all receptors are membrane proteins, because signals cannot cross
+membranes. The correction: steroid hormones ($\mathrm{MW}\ 250$--$500$, $\log P$
+about $3$ to $5$), thyroid hormone, retinoids, vitamin D and nitric oxide all cross
+the bilayer and bind receptors in the cytosol or nucleus. Their responses are slow
+(transcription, $30\ \mathrm{min}$ to hours) and long-lasting (hours to days),
+because the rate-limiting step is mRNA and protein synthesis, not the binding.
+\end{warnbox}
+
+\begin{tipbox}[title={TECHNIQUE: classify the signal before you classify the pathway}]
+Trigger: any question naming an unfamiliar ligand. Ask three questions in order.
+\begin{itemize}
+\item Is it hydrophobic and small? Then predict an intracellular receptor, a
+transcriptional response, and a latency of $\geq 30\ \mathrm{min}$.
+\item Is it a peptide, amine or nucleotide? Then predict a surface receptor and a
+second messenger, with a latency of milliseconds to minutes.
+\item Does it act on a cell it touches? Then predict juxtacrine signalling with no
+diffusible messenger and no amplification.
+\end{itemize}
+Two-thirds of multiple-choice items in this area are solved by that triage alone.
+\end{tipbox}
+
+\section{Signal classes: hormones, local regulators, neurotransmitters, gases, contact}
+
+\begin{defbox}[title={DEFINITIONS: the chemical families of signals}]
+\nr{09-signaling-ligand-chemical-classes}{Chemical classes of ligands}
+\begin{description}
+\item[Peptide and protein hormones] Insulin ($5808\ \mathrm{Da}$, $51$ residues, two
+chains), glucagon ($29$ residues), \ce{ADH} ($9$ residues), growth hormone
+($191$ residues). Stored in vesicles, released by regulated exocytosis, half-lives
+$3$ to $30\ \mathrm{min}$. Water-soluble, so surface receptors only.
+\item[Amine hormones and transmitters] Epinephrine, norepinephrine, dopamine,
+serotonin, histamine; derived from tyrosine, tryptophan or histidine by
+decarboxylation and hydroxylation. Thyroxine is the exception: an iodinated tyrosine
+dimer that behaves like a steroid and rides on thyroxine-binding globulin.
+\item[Steroid hormones] Cortisol, aldosterone, testosterone, estradiol, progesterone;
+all from cholesterol ($27$ carbons) by side-chain cleavage. Not stored, made on
+demand, $90$ to $99\%$ protein-bound in plasma, half-lives $60$ to $100\ \mathrm{min}$
+(cortisol) up to $\approx 7\ \mathrm{d}$ (thyroxine).
+\item[Eicosanoids] Prostaglandins, thromboxanes, leukotrienes from arachidonic acid
+($20{:}4$); paracrine only, half-lives $30\ \mathrm{s}$ to a few minutes.
+\item[Gases] \ce{NO} ($t_{1/2}$ $2$ to $30\ \mathrm{s}$), \ce{CO}, \ce{H2S}.
+\item[Nucleotides and derivatives] \ce{ATP} and adenosine acting on P2 and P1
+receptors; \ce{ATP} is a genuine extracellular transmitter at many synapses.
+\end{description}
+\end{defbox}
+
+\begin{tabular}{@{}lp{2.1cm}p{2.3cm}p{2.6cm}@{}}
+\toprule
+\textbf{Property} & \textbf{Peptide} & \textbf{Steroid} & \textbf{Neurotransmitter}\\
+\midrule
+Receptor site & plasma membrane & cytosol or nucleus & membrane, post-synaptic\\
+Stored? & yes, vesicles & no, made on demand & yes, vesicles\\
+Plasma carrier & mostly free & $90$--$99\%$ bound & not bloodborne\\
+Latency & $\mathrm{s}$--$\mathrm{min}$ & $30\ \mathrm{min}$--$\mathrm{h}$ & $0.1$--$2\ \mathrm{ms}$\\
+Duration & $\mathrm{min}$ & $\mathrm{h}$--$\mathrm{d}$ & $\mathrm{ms}$\\
+Amplification & large, cascade & modest, transcription & none needed, direct gating\\
+\bottomrule
+\end{tabular}
+
+\begin{keybox}[title={MEMORIZE: solubility predicts everything}]
+\nr{09-signaling-solubility-rule}{Solubility rule for receptor location}
+Hydrophilic ligand $\rightarrow$ surface receptor $\rightarrow$ second messenger
+$\rightarrow$ fast, amplified, brief response. Lipophilic ligand $\rightarrow$
+intracellular receptor $\rightarrow$ direct action as a transcription factor
+$\rightarrow$ slow, modest, durable response. The only common exceptions are
+thyroxine (lipophilic but needs the \ce{MCT8} transporter to cross membranes at
+physiological rates) and the membrane-initiated rapid actions of estradiol
+(seconds, via \ce{GPER}).
+\end{keybox}
+
+\begin{expbox}[title={EXPERIMENT: Loewi 1921, the first chemical transmitter}]
+\nr{09-signaling-loewi-vagusstoff}{Loewi's Vagusstoff experiment}
+Two frog hearts were perfused in series. Stimulating the vagus of the first slowed it
+from about $60$ to $30\ \mathrm{beats\,min^{-1}}$; the perfusate then reaching the
+second, unstimulated heart slowed that one too, with a delay of a few seconds.
+Physostigmine, which blocks cholinesterase, prolonged and deepened the effect;
+atropine abolished it. Conclusion: nerves act by releasing a diffusible chemical,
+later identified as acetylcholine, not by electrical continuity. This experiment
+created the concept of a ligand and a receptor as separable objects.
+\end{expbox}
+
+\begin{obsbox}[title={WORTH NOTICING: gases break every rule}]
+\nr{09-signaling-gas-messengers}{Gaseous messengers}
+\ce{NO} has no receptor at the plasma membrane, no transporter, no vesicle and no
+reuptake system. It is made on demand by nitric oxide synthase, diffuses roughly
+$100\ \mathrm{\mu m}$ in its $2$ to $30\ \mathrm{s}$ lifetime, and binds a haem iron
+inside the target cell. Its concentration is regulated purely by synthesis and decay
+rate. Because it is uncharged and small ($30\ \mathrm{Da}$), it crosses membranes
+faster than it diffuses laterally, and a source is therefore a sphere of influence
+rather than a line of contact.
+\end{obsbox}
+
+\begin{warnbox}[title={TRAP: the same molecule is a hormone and a transmitter}]
+\nr{09-signaling-same-molecule-trap}{One molecule, several signalling classes}
+The wrong belief: a molecule is either a hormone or a neurotransmitter.
+Norepinephrine is a neurotransmitter at sympathetic nerve terminals (cleft
+concentration transiently $10^{-5}\ \mathrm{M}$, action in $\mathrm{ms}$) and a
+hormone from the adrenal medulla (plasma $10^{-9}\ \mathrm{M}$, action over minutes).
+Epinephrine is about $80\%$ of adrenal medullary output and norepinephrine about
+$20\%$. The classification names the delivery route, not the chemical.
+\end{warnbox}
+
+Contact-dependent signalling deserves separate treatment because it has no messenger
+to dilute and therefore no amplification stage. Notch on one cell binds Delta on
+another; the receptor is then cleaved twice and its intracellular tail travels to the
+nucleus. The stoichiometry is roughly one-to-one, and the gain is close to unity. Gap
+junctions are the limiting case: connexon channels of $1.5$ to $2\ \mathrm{nm}$ pore
+diameter pass anything under about $1000\ \mathrm{Da}$, including \ce{Ca^2+},
+\ce{IP3} and cAMP, so coupled cells share second messengers directly. A cardiac
+myocyte is electrically continuous with its neighbours through roughly
+$2\times10^{5}$ connexons per intercalated disc.
+
+\begin{tipbox}[title={TECHNIQUE: latency tells you the mechanism}]
+Trigger: a data table giving response times. Map them.
+\begin{itemize}
+\item $0.1$--$5\ \mathrm{ms}$: ligand-gated ion channel, direct gating.
+\item $0.1$--$10\ \mathrm{s}$: G protein and second messenger, or a covalent
+modification of an existing protein.
+\item $10$--$60\ \mathrm{min}$: transcription started, new mRNA.
+\item $>2\ \mathrm{h}$: new protein accumulated, or cell division and growth.
+\end{itemize}
+A response abolished by cycloheximide is a transcription-or-translation response; a
+response surviving it is a covalent or gating response.
+\end{tipbox}
+
+\section{Ligand-receptor binding: affinity, $K_d$, occupancy, agonists, spare receptors}
+
+Binding is a chemical equilibrium and every quantitative question in this volume
+descends from it. Write $L$ for free ligand, $R$ for free receptor, $LR$ for complex.
+
+\begin{keybox}[title={MEMORIZE: the occupancy equation}]
+\nr{09-signaling-occupancy-equation}{Receptor occupancy equation}
+\[
+L + R \rightleftharpoons LR, \qquad
+K_d=\frac{k_{\text{off}}}{k_{\text{on}}}=\frac{[L][R]}{[LR]},\qquad
+Y=\frac{[LR]}{[R]_{\text{total}}}=\frac{[L]}{K_d+[L]}
+\]
+$Y$ is fractional occupancy (dimensionless), $[L]$ free ligand concentration in
+$\mathrm{M}$, $K_d$ the dissociation constant in $\mathrm{M}$, $k_{\text{on}}$ in
+$\mathrm{M^{-1}\,s^{-1}}$ (diffusion limit about $10^{8}$ to
+$10^{9}\ \mathrm{M^{-1}\,s^{-1}}$) and $k_{\text{off}}$ in $\mathrm{s^{-1}}$. The
+equation assumes one site per receptor, no cooperativity, and $[L]$ not depleted by
+binding. At $[L]=K_d$, $Y=0.5$ exactly. Going from $Y=0.1$ to $Y=0.9$ costs an
+$81$-fold rise in $[L]$ for any non-cooperative receptor.
+\end{keybox}
+
+\begin{defbox}[title={DEFINITIONS: the pharmacology vocabulary}]
+\nr{09-signaling-pharmacology-terms}{Agonist, antagonist, efficacy, potency}
+\begin{description}
+\item[Affinity] How tightly the ligand binds; measured by $K_d$ (or $K_i$ for a
+competitor). Low $K_d$ means high affinity. Typical hormone receptors:
+$K_d = 10^{-11}$ to $10^{-8}\ \mathrm{M}$; typical neurotransmitter receptors at a
+synapse: $10^{-6}$ to $10^{-4}\ \mathrm{M}$, because the cleft concentration is high
+and speed matters more than affinity.
+\item[Efficacy] The size of the maximal response the ligand can produce. A
+\tm{full agonist} gives the tissue maximum, a \tm{partial agonist} gives $10$ to
+$80\%$ of it however high the dose, an \tm{antagonist} gives zero, an
+\tm{inverse agonist} drives the response below the unstimulated baseline.
+\item[Potency] The concentration needed, reported as $\mathrm{EC_{50}}$. Set by
+affinity, receptor number, and efficiency of coupling. Potency and efficacy are
+independent axes.
+\item[Competitive antagonist] Binds the orthosteric site reversibly, shifts the
+dose-response curve right with no fall in maximum; surmountable.
+\item[Non-competitive or allosteric antagonist] Binds elsewhere or irreversibly,
+lowers the maximum; insurmountable.
+\end{description}
+\end{defbox}
+
+\begin{calcbox}[title={WORKED: occupancy, potency and a shifted curve}]
+\nr{09-signaling-occupancy-worked}{Worked occupancy and antagonist shift}
+An insulin receptor has $K_d = 1.0\times10^{-10}\ \mathrm{M}$. Fasting plasma insulin
+is $5\ \mathrm{\mu U\,mL^{-1}}$, which is $3.0\times10^{-11}\ \mathrm{M}$; after a
+meal it reaches $60\ \mathrm{\mu U\,mL^{-1}}$, or
+$3.6\times10^{-10}\ \mathrm{M}$.
+
+\ttitle{Fasting occupancy.}
+\[
+Y=\frac{3.0\times10^{-11}}{1.0\times10^{-10}+3.0\times10^{-11}}
+=\frac{3.0}{13.0}=0.231
+\]
+\ttitle{Fed occupancy.}
+\[
+Y=\frac{3.6\times10^{-10}}{1.0\times10^{-10}+3.6\times10^{-10}}
+=\frac{3.6}{4.6}=0.783
+\]
+So a $12$-fold rise in hormone changes occupancy from $23\%$ to $78\%$, a factor of
+only $3.4$. Hyperbolic binding compresses a wide input range into a narrow output
+range: that compression is exactly why cascades must supply gain downstream.
+
+\ttitle{Now add a competitive antagonist.} A drug with $K_i=2.0\times10^{-9}\ \mathrm{M}$
+is present at $1.8\times10^{-8}\ \mathrm{M}$. The dose-ratio is
+\[
+r=1+\frac{[I]}{K_i}=1+\frac{1.8\times10^{-8}}{2.0\times10^{-9}}=1+9=10
+\]
+so the apparent $K_d$ becomes $1.0\times10^{-9}\ \mathrm{M}$ and fed occupancy falls
+to $3.6/(10+3.6)=0.265$.
+
+\ttitle{Check.} At $[L]=K_d$ the formula must give $0.5$: with
+$[L]=1.0\times10^{-10}$, $Y=1.0/(1.0+1.0)=0.500$. \tm{$\surd$} And the antagonist
+must not change the maximum: as $[L]\rightarrow\infty$, $Y\rightarrow 1$ with or
+without the drug. \tm{$\surd$}
+\end{calcbox}
+
+\begin{thmbox}[title={PRINCIPLE: spare receptors uncouple $\mathrm{EC_{50}}$ from $K_d$}]
+\nr{09-signaling-spare-receptors}{Spare receptors}
+If maximal response requires occupancy of only a fraction of receptors, the tissue has
+\tm{spare receptors} (receptor reserve) and $\mathrm{EC_{50}} < K_d$. In smooth
+muscle, full contraction can be reached at $5$ to $10\%$ occupancy, so
+$\mathrm{EC_{50}}$ may be $10$ to $20$ times lower than $K_d$. Two consequences the
+exam tests: a partial irreversible block of receptors first shifts the curve left-of-
+$K_d$ region rightwards without lowering the maximum, and only once the reserve is
+consumed does the maximum fall; and a tissue with spare receptors responds faster,
+because the time to reach threshold occupancy is shorter.
+\end{thmbox}
+
+\begin{tabular}{@{}lp{2.4cm}p{2.3cm}p{2.5cm}@{}}
+\toprule
+\textbf{Ligand type} & \textbf{Max response} & \textbf{Curve shift} & \textbf{Example}\\
+\midrule
+Full agonist & $100\%$ & reference & epinephrine at $\beta_1$\\
+Partial agonist & $10$--$80\%$ & own curve & buprenorphine at $\mu$\\
+Competitive antagonist & unchanged & right, parallel & propranolol at $\beta$\\
+Non-competitive & lowered & little shift & ketamine at \ce{NMDA}\\
+Inverse agonist & below basal & --- & many \ce{H1} blockers\\
+\bottomrule
+\end{tabular}
+
+\begin{tipbox}[title={TECHNIQUE: read a binding plot in three seconds}]
+\nr{09-signaling-binding-plots}{Binding plot geometry}
+On a linear plot, saturation binding is a rectangular hyperbola: read $B_{\max}$ off
+the plateau and $K_d$ at half-plateau. On a semi-log plot the same data is a sigmoid
+with the steepest point at $\mathrm{EC_{50}}$, and the useful width between $10\%$
+and $90\%$ is $1.91$ log units for a non-cooperative site. On a Scatchard plot,
+$B/[L]$ against $B$, the slope is $-1/K_d$ and the $x$-intercept is $B_{\max}$. A
+curved, concave-up Scatchard plot means two affinity classes or negative
+cooperativity; the insulin receptor genuinely shows this.
+\end{tipbox}
+
+\begin{warnbox}[title={TRAP: $K_d$ is not $\mathrm{EC_{50}}$ and neither is $K_m$}]
+\nr{09-signaling-kd-ec50-trap}{Distinguishing $K_d$, $\mathrm{EC_{50}}$ and $K_m$}
+The wrong belief: $K_d$, $\mathrm{EC_{50}}$ and $K_m$ are interchangeable
+half-maximal constants. $K_d$ is a binding equilibrium constant, and lower means
+tighter. $\mathrm{EC_{50}}$ is a functional constant that also contains receptor
+density, amplification and desensitisation, and it can be $100$-fold below $K_d$ in a
+tissue with spare receptors. $K_m$ is a steady-state kinetic constant for catalysis
+and only equals a true $K_d$ when $k_{\text{cat}} \ll k_{\text{off}}$. A question
+giving you both $K_d$ and $\mathrm{EC_{50}}$ is almost always testing receptor
+reserve.
+\end{warnbox}
+
+\section{G protein coupled receptors: structure, the cycle, the $\mathrm{G}\alpha$ families}
+
+\begin{keybox}[title={MEMORIZE: GPCR architecture and scale}]
+\nr{09-signaling-gpcr-architecture}{GPCR architecture}
+A single polypeptide of $300$ to $1100$ residues threads the membrane seven times as
+$\alpha$ helices of $20$ to $27$ residues each, giving an extracellular N-terminus, an
+intracellular C-terminus, three extracellular loops and three intracellular loops.
+The ligand pocket sits in the upper third of the helical bundle for small amines, or
+on the N-terminal domain and loops for peptides and glycoprotein hormones. Loop
+$\mathrm{IC}3$ and the C-terminal tail carry the G protein contact and the
+phosphorylation sites. The human genome encodes about $800$ GPCRs, of which roughly
+$400$ are odorant receptors; GPCRs are the direct target of $30$ to $35\%$ of
+approved drugs.
+\end{keybox}
+
+Agonist binding rotates helix $6$ outward by about $10$ angstroms at its
+cytoplasmic end and shifts the conserved \ce{DRY} motif, opening a cleft that the
+G protein's $\alpha$ subunit docks into. The receptor is a catalyst: it is a
+guanine nucleotide exchange factor, and one occupied receptor can activate many
+G proteins in sequence. That is the first amplification step in the cascade.
+
+\begin{defbox}[title={DEFINITIONS: the heterotrimeric G protein}]
+\nr{09-signaling-g-protein-subunits}{G protein subunits}
+\begin{description}
+\item[$\mathrm{G}\alpha$] $39$ to $52\ \mathrm{kDa}$, binds GDP or GTP, has intrinsic
+GTPase activity with $k_{\text{cat}}$ of roughly $2$ to
+$5\ \mathrm{min^{-1}}$ alone. Lipid-anchored by palmitoylation or myristoylation.
+\item[$\mathrm{G}\beta\gamma$] An obligate dimer, $35$ and $8\ \mathrm{kDa}$;
+$\gamma$ is prenylated. It is a signalling molecule in its own right, gating
+\ce{GIRK} \ce{K+} channels, inhibiting \ce{Ca_V} channels, and activating
+\ce{PLC}$\beta$ and \ce{PI3K}$\gamma$.
+\item[RGS proteins] Regulators of G protein signalling; GTPase-activating proteins
+that raise $\mathrm{G}\alpha$ hydrolysis up to $2000$-fold, shortening the active
+state from tens of seconds to well under a second.
+\end{description}
+Humans have $16$ $\mathrm{G}\alpha$ genes, $5$ $\beta$ and $12$ $\gamma$, allowing on
+the order of $10^{3}$ combinations.
+\end{defbox}
+
+\begin{thmbox}[title={PRINCIPLE: the G protein cycle is a timer, not a switch}]
+\nr{09-signaling-g-protein-cycle}{The G protein cycle}
+\begin{enumerate}
+\item Resting: $\mathrm{G}\alpha$-GDP is bound to $\mathrm{G}\beta\gamma$; the
+trimer is inactive and membrane-tethered.
+\item Agonist-bound receptor acts as a GEF: GDP leaves, and cytosolic GTP
+($200$ to $500\ \mathrm{\mu M}$, about $10$-fold above GDP) binds.
+\item GTP binding reorders three switch regions; $\mathrm{G}\alpha$-GTP loses
+affinity for $\beta\gamma$ and both halves engage effectors.
+\item Intrinsic GTPase, accelerated by RGS, hydrolyses GTP to GDP $+$ \ce{Pi}. The
+lifetime of the active state, typically $1$ to $30\ \mathrm{s}$ without RGS and
+$50\ \mathrm{ms}$ to $1\ \mathrm{s}$ with it, is what sets the duration of the
+response.
+\item $\mathrm{G}\alpha$-GDP reassociates with $\beta\gamma$.
+\end{enumerate}
+Nothing is phosphorylated in this cycle, and no external energy is consumed beyond
+the one GTP. The receptor does not hold the G protein on; the clock in
+$\mathrm{G}\alpha$ does.
+\end{thmbox}
+
+\begin{tabular}{@{}lp{2.6cm}p{2.6cm}p{2.3cm}@{}}
+\toprule
+\textbf{Family} & \textbf{Effector} & \textbf{Second messenger} & \textbf{Toxin target}\\
+\midrule
+$\mathrm{G}\alpha_s$ & adenylyl cyclase up & cAMP up & cholera toxin\\
+$\mathrm{G}\alpha_{i/o}$ & adenylyl cyclase down & cAMP down & pertussis toxin\\
+$\mathrm{G}\alpha_q$ & \ce{PLC}$\beta$ up & \ce{IP3}, DAG, \ce{Ca^2+} & none common\\
+$\mathrm{G}\alpha_{12/13}$ & RhoGEF up & Rho-GTP, actin & none common\\
+$\mathrm{G}\alpha_t$ (transducin) & \ce{cGMP} PDE6 up & cGMP down & cholera-like\\
+\bottomrule
+\end{tabular}
+
+\begin{obsbox}[title={WORTH NOTICING: transducin is $\mathrm{G}\alpha_i$ wearing a hat}]
+\nr{09-signaling-transducin}{Transducin as a $\mathrm{G}\alpha_i$ relative}
+Transducin belongs to the $i/o$ family and, like them, lowers a cyclic nucleotide,
+except that it does so by activating a phosphodiesterase rather than inhibiting a
+cyclase. The logic is identical: agonist (here, a photon absorbed by retinal)
+$\rightarrow$ GPCR (rhodopsin) $\rightarrow$ G protein $\rightarrow$ change in cyclic
+nucleotide $\rightarrow$ change in a channel. Vision is a chemical signalling cascade
+that happens to be triggered by light, and rhodopsin's ligand, $11$-\emph{cis}
+retinal, is covalently bound until the photon isomerises it.
+\end{obsbox}
+
+\begin{expbox}[title={EXPERIMENT: Gilman's cyc$^-$ complementation, 1977--1980}]
+\nr{09-signaling-gilman-cyc-minus}{Gilman's cyc$^-$ experiment}
+\ce{S49} mouse lymphoma mutants called cyc$^-$ had normal $\beta$-adrenergic binding
+sites and normal adenylyl cyclase activity when assayed with detergent and
+\ce{Mn^2+}, yet made no cAMP in response to isoproterenol. Mixing cyc$^-$ membranes
+with a soluble fraction from wild-type cells restored hormone-stimulated cyclase.
+Gilman purified the restoring activity and found a GTP-binding protein of $45$ and
+$35\ \mathrm{kDa}$ subunits. Rodbell had already shown that GTP, not \ce{ATP}, was
+required for hormonal activation and that the non-hydrolysable analogue
+\ce{GTP}$\gamma$\ce{S} gave a persistent response. Together these established that a
+separate transducer sits between receptor and enzyme, which is the central idea of
+the field. Shared Nobel Prize, $1994$.
+\end{expbox}
+
+\begin{warnbox}[title={TRAP: three errors about G proteins}]
+\nr{09-signaling-g-protein-traps}{Common G protein errors}
+The wrong beliefs and their corrections.
+\begin{itemize}
+\item "GTP phosphorylates the G protein." No: GTP \emph{binds}. Nothing gains a
+phosphate. The receptor is a nucleotide exchanger, not a kinase.
+\item "$\mathrm{G}\beta\gamma$ is just an inhibitory chaperone." No: free
+$\beta\gamma$ opens \ce{GIRK} channels in the heart, which is how acetylcholine at
+\ce{M2} receptors slows the sinoatrial node within $100\ \mathrm{ms}$, far faster than
+any cAMP change.
+\item "Hydrolysis of GTP activates the G protein." The reverse: hydrolysis
+\emph{terminates} it. A GTPase-deficient $\mathrm{G}\alpha_s$ mutant, as in
+McCune-Albright syndrome and some pituitary adenomas, is constitutively active.
+\end{itemize}
+\end{warnbox}
+
+\section{The cyclic AMP pathway, adenylyl cyclase, PKA, and amplification arithmetic}
+
+\begin{keybox}[title={MEMORIZE: the canonical cAMP cascade}]
+\nr{09-signaling-camp-cascade}{The cAMP cascade}
+Epinephrine $\rightarrow$ $\beta_2$ receptor $\rightarrow$ $\mathrm{G}\alpha_s$-GTP
+$\rightarrow$ adenylyl cyclase $\rightarrow$ cAMP $\rightarrow$ protein kinase A
+$\rightarrow$ phosphorylase kinase $\rightarrow$ glycogen phosphorylase
+$\rightarrow$ glucose $1$-phosphate. In parallel, PKA phosphorylates glycogen
+synthase and inactivates it, so one signal turns synthesis off and breakdown on.
+The reaction made by the cyclase is
+\[
+\ce{ATP -> cAMP + PPi}
+\]
+a cyclisation between the $3'$-\ce{OH} and the $\alpha$-phosphate, with
+pyrophosphate released and then hydrolysed, which makes the step effectively
+irreversible.
+\end{keybox}
+
+Adenylyl cyclase is a $120\ \mathrm{kDa}$ integral protein with twelve
+transmembrane helices in two bundles and two cytoplasmic catalytic domains, C1 and
+C2, that form one active site at their interface. Nine membrane isoforms plus a
+soluble bicarbonate-sensitive one exist in mammals; \ce{AC1} and \ce{AC8} are
+stimulated by \ce{Ca^2+}-calmodulin, \ce{AC5} and \ce{AC6} are inhibited by
+\ce{Ca^2+}, and all membrane isoforms need \ce{Mg^2+} and are activated by the
+diterpene forskolin. That isoform dependence is how a cell decides whether the
+calcium and cAMP pathways reinforce or oppose one another.
+
+\begin{defbox}[title={DEFINITIONS: protein kinase A}]
+\nr{09-signaling-pka-structure}{Protein kinase A structure and activation}
+Inactive PKA is a heterotetramer \ce{R2C2}: two regulatory and two catalytic
+subunits. Each R subunit has two tandem cAMP sites, \ce{CNB-A} and \ce{CNB-B}, and
+binding is positively cooperative with a Hill coefficient near $1.6$ to $1.8$ and a
+half-maximal activation at $100$ to $500\ \mathrm{nM}$ cAMP. Four cAMP molecules
+release two free C subunits of $40\ \mathrm{kDa}$. The C subunit phosphorylates
+serine and threonine in the consensus \ce{R-R-X-S/T-\Phi}, where $\Phi$ is a bulky
+hydrophobic residue. \tm{PKI} is a heat-stable inhibitor peptide; \tm{AKAPs} are
+scaffold proteins that tether PKA within $50\ \mathrm{nm}$ of chosen substrates.
+Resting cytosolic cAMP is about $0.05$ to $0.1\ \mathrm{\mu M}$ and stimulated cAMP
+reaches $1$ to $10\ \mathrm{\mu M}$, so the operating range straddles the PKA
+$\mathrm{K_{1/2}}$ almost exactly.
+\end{defbox}
+
+\begin{expbox}[title={EXPERIMENT: Sutherland and Rall, 1956--1958}]
+\nr{09-signaling-sutherland-camp}{Sutherland's discovery of cAMP}
+Epinephrine activated glycogen phosphorylase in intact liver slices, but adding
+epinephrine to a soluble liver extract did nothing. Sutherland and Rall found that
+epinephrine \emph{plus a particulate membrane fraction plus \ce{ATP} and \ce{Mg^2+}}
+generated a small, heat-stable, acid-stable factor that, transferred to the soluble
+fraction on its own, activated phosphorylase with no hormone present. The factor was
+identified as adenosine $3',5'$-cyclic monophosphate. Three conclusions defined the
+field: the hormone never enters the cell; an intracellular \tm{second messenger}
+carries the message; and the messenger is generated at the membrane and acts in the
+cytosol. Nobel Prize, $1971$. The same logic later identified cGMP, \ce{IP3} and
+\ce{Ca^2+}: separate the compartments, show the transferable factor.
+\end{expbox}
+
+\begin{calcbox}[title={WORKED: the amplification arithmetic}]
+\nr{09-signaling-amplification-arithmetic}{Amplification arithmetic of the cAMP cascade}
+A hepatocyte carries about $2\times10^{4}$ $\beta$ receptors. Suppose $1\%$ are
+occupied, so $200$ active receptors, and take these per-step gains: each active
+receptor activates $10$ \ce{Gs} during its lifetime; each active cyclase makes
+$1000$ cAMP; each PKA catalytic subunit phosphorylates $10$ phosphorylase kinase
+molecules; each phosphorylase kinase activates $50$ phosphorylase; each phosphorylase
+releases $10^{4}$ glucose $1$-phosphate.
+
+\ttitle{Step by step.}
+\begin{itemize}
+\item Active \ce{Gs} and hence cyclase: $200 \times 10 = 2\times10^{3}$.
+\item cAMP molecules: $2\times10^{3} \times 10^{3} = 2\times10^{6}$.
+\item PKA activated, taking $4$ cAMP per \ce{R2C2} and $2$ C subunits released:
+$2\times10^{6}/4 = 5\times10^{5}$ tetramers, giving $10^{6}$ free C subunits.
+\item Phosphorylase kinase: $10^{6}\times 10 = 10^{7}$.
+\item Phosphorylase: $10^{7}\times 50 = 5\times10^{8}$.
+\item Glucose $1$-phosphate: $5\times10^{8}\times10^{4}=5\times10^{12}$ molecules.
+\end{itemize}
+\ttitle{Convert to mass.}
+$5\times10^{12}/6.02\times10^{23}=8.3\times10^{-12}\ \mathrm{mol}$; at
+$180\ \mathrm{g\,mol^{-1}}$ for glucose that is $1.5\times10^{-9}\ \mathrm{g}$, about
+$1.5\ \mathrm{ng}$ of glucose from one cell.
+
+\ttitle{Overall gain.} $5\times10^{12}$ products from $200$ bound ligands is
+$2.5\times10^{10}$-fold, and from the $200$ hormone molecules that is a gain of about
+$10^{10}$.
+
+\ttitle{Check two ways.} Multiply the gains: $10\times10^{3}\times0.5\times10\times50
+\times10^{4}=2.5\times10^{10}$, matching the step-by-step total. \tm{$\surd$} And
+sanity-check the physiology: a hepatocyte holds about $200\ \mathrm{pg}$ of glycogen,
+so $1.5\ \mathrm{ng}$ would exceed the store; real cells stop far short because
+phosphodiesterases, phosphatases and receptor desensitisation truncate the cascade
+within seconds. The arithmetic gives the \emph{capacity}, not the yield. \tm{$\surd$}
+\end{calcbox}
+
+\begin{tabular}{@{}lp{2.5cm}ll@{}}
+\toprule
+\textbf{Step} & \textbf{Species} & \textbf{Gain} & \textbf{Cumulative}\\
+\midrule
+$1$ & receptor--\ce{Gs} & $\times 10$ & $10^{1}$\\
+$2$ & cyclase--cAMP & $\times 10^{3}$ & $10^{4}$\\
+$3$ & cAMP--PKA C & $\times 0.5$ & $5\times10^{3}$\\
+$4$ & PKA--phos.\ kinase & $\times 10$ & $5\times10^{4}$\\
+$5$ & kinase--phosphorylase & $\times 50$ & $2.5\times10^{6}$\\
+$6$ & phosphorylase--G1P & $\times 10^{4}$ & $2.5\times10^{10}$\\
+\bottomrule
+\end{tabular}
+
+Notice that step $3$ has a gain below one. Cascades are not uniformly amplifying;
+they trade gain for control at the steps where a switch is wanted, and the
+cooperativity of cAMP binding to PKA converts a graded cAMP rise into a sharper
+kinase response.
+
+\begin{obsbox}[title={WORTH NOTICING: cAMP is ancient and bacterial}]
+\nr{09-signaling-camp-cap}{cAMP in bacteria}
+\sn{Escherichia coli} uses cAMP with no receptor and no G protein at all: glucose
+starvation relieves inhibition of adenylyl cyclase, cAMP rises about $50$-fold to
+roughly $1\ \mathrm{mM}$ locally, and cAMP-\ce{CAP} binds promoter DNA to activate
+catabolic operons. Eukaryotes kept the messenger and bolted a receptor and a
+transducer onto the front of it. The same molecule, opposite logic: in the bacterium
+cAMP means "no glucose", in the hepatocyte it means "release glucose".
+\end{obsbox}
+
+\begin{warnbox}[title={TRAP: cAMP does not always mean PKA, or stimulation}]
+\nr{09-signaling-camp-traps}{cAMP misconceptions}
+Three corrections. First, cAMP has targets besides PKA: \ce{HCN} pacemaker channels
+and \ce{CNG} channels bind it directly, and \ce{Epac} is a cAMP-activated RapGEF, so
+a cAMP response surviving PKA inhibition by \ce{H89} is not evidence against cAMP.
+Second, epinephrine does not always raise cAMP: at $\alpha_2$ receptors it couples to
+$\mathrm{G}\alpha_i$ and lowers it. Third, cAMP itself is not the activator of PKA's
+catalytic subunit in the sense of binding it; cAMP binds the \emph{regulatory}
+subunit and relieves inhibition. Disinhibition and activation look identical on a
+graph and are different mechanisms.
+\end{warnbox}
+
+\begin{tipbox}[title={TECHNIQUE: locate the lesion in a cascade}]
+\nr{09-signaling-lesion-localisation}{Locating a cascade lesion}
+Trigger: a table of treatments and responses. Add each downstream agent in turn and
+ask what rescues the response.
+\begin{itemize}
+\item No response to hormone, normal response to forskolin: lesion is at the
+receptor or the G protein, not the cyclase.
+\item No response to hormone or forskolin, normal response to
+dibutyryl-cAMP (membrane-permeant): lesion is the cyclase.
+\item No response to dibutyryl-cAMP, normal response to phorbol ester: lesion is PKA
+or below, and the PKC arm is intact.
+\end{itemize}
+The principle generalises: the first agent that rescues the response acts
+\emph{downstream} of the lesion.
+\end{tipbox}
+
+\section{The phosphoinositide pathway: PLC, \ce{IP3}, DAG, PKC and calcium release}
+
+\begin{keybox}[title={MEMORIZE: one lipid, two messengers}]
+\nr{09-signaling-pip2-cleavage}{Cleavage of \ce{PIP2}}
+Phospholipase C cleaves phosphatidylinositol $4,5$-bisphosphate:
+\[
+\ce{PIP2 -> IP3 + DAG}
+\]
+\ce{PIP2} is only $0.2$ to $1\%$ of membrane phospholipid, roughly
+$5\times10^{3}$ to $10^{4}$ molecules per $\mathrm{\mu m^2}$ of inner leaflet.
+Hydrolysis is at the glycerophosphate bond, so the \emph{water-soluble} inositol
+$1,4,5$-trisphosphate diffuses into the cytosol ($D\approx 2.8\times
+10^{-10}\ \mathrm{m^2\,s^{-1}}$, range tens of micrometres in its $\approx1\ \mathrm{s}$
+lifetime) while the \emph{lipid} diacylglycerol stays in the membrane and recruits
+protein kinase C to it. The bifurcation is the whole point: one enzyme, one
+substrate, two messengers with different compartments and different targets.
+\end{keybox}
+
+\begin{defbox}[title={DEFINITIONS: the phosphoinositides and their enzymes}]
+\nr{09-signaling-phosphoinositide-species}{Phosphoinositide species}
+\begin{description}
+\item[\ce{PI}] Phosphatidylinositol, the unphosphorylated parent, about $10\%$ of
+membrane phospholipid.
+\item[\ce{PI(4,5)P2}] Made by \ce{PI4K} then \ce{PIP5K}; substrate of PLC and of
+\ce{PI3K}. Also a direct cofactor for many channels and transporters.
+\item[\ce{PI(3,4,5)P3}] Made by \ce{PI3K} acting on \ce{PIP2}; a docking site for
+\ce{PH} domains, notably \ce{Akt} and \ce{PDK1}. Removed by the phosphatase
+\ce{PTEN}, a tumour suppressor.
+\item[\ce{PLC}$\beta$] Activated by $\mathrm{G}\alpha_q$ and by
+$\mathrm{G}\beta\gamma$; the GPCR arm.
+\item[\ce{PLC}$\gamma$] Has \ce{SH2} domains, activated by receptor tyrosine kinase
+phosphotyrosines; the RTK arm.
+\item[\ce{PLC}$\delta,\ \epsilon,\ \eta,\ \zeta$] \ce{Ca^2+}-sensitive, Ras-activated,
+neuronal and sperm-specific forms respectively. All isoforms require \ce{Ca^2+} for
+catalysis, which makes the pathway self-amplifying.
+\end{description}
+\end{defbox}
+
+\begin{thmbox}[title={PRINCIPLE: the two branches have separate jobs}]
+\nr{09-signaling-ip3-dag-branches}{The \ce{IP3} and DAG branches}
+The \ce{IP3} branch is the \emph{mobilising} branch: \ce{IP3} binds the \ce{IP3}
+receptor, a tetrameric \ce{Ca^2+} channel of the endoplasmic reticulum membrane with
+a conductance near $10$ to $20\ \mathrm{pS}$ and a half-maximal activating \ce{IP3}
+concentration of $0.1$ to $1\ \mathrm{\mu M}$, and \ce{Ca^2+} floods from a store
+held at $100$ to $800\ \mathrm{\mu M}$ into a cytosol at $100\ \mathrm{nM}$. The DAG
+branch is the \emph{membrane-recruiting} branch: DAG plus \ce{Ca^2+} brings
+conventional PKC to the inner leaflet, where its pseudosubstrate is displaced and it
+phosphorylates serine and threonine residues on membrane-proximal substrates. The
+branches converge because conventional PKC needs the \ce{Ca^2+} that the other branch
+released: the pathway implements a coincidence requirement inside itself.
+\end{thmbox}
+
+\begin{tabular}{@{}lp{2.4cm}p{2.3cm}p{2.5cm}@{}}
+\toprule
+\textbf{Feature} & \textbf{\ce{IP3}} & \textbf{DAG} & \textbf{\ce{Ca^2+}}\\
+\midrule
+Compartment & cytosol & membrane & cytosol, local\\
+Target & \ce{IP3}R on ER & PKC, \ce{TRPC} & calmodulin, PKC, many\\
+Resting level & $<0.1\ \mathrm{\mu M}$ & low & $50$--$100\ \mathrm{nM}$\\
+Peak level & $1$--$5\ \mathrm{\mu M}$ & $5$--$10\times$ basal & $0.5$--$10\ \mathrm{\mu M}$\\
+Removal & $5$-phosphatase, $3$-kinase & DAG kinase to \ce{PA}, lipase & \ce{SERCA}, \ce{PMCA}, exchanger\\
+Lifetime & $\approx 1\ \mathrm{s}$ & $\mathrm{s}$--$\mathrm{min}$ & $\mathrm{ms}$--$\mathrm{s}$ locally\\
+\bottomrule
+\end{tabular}
+
+\begin{calcbox}[title={WORKED: how many calcium ions does one \ce{IP3} release?}]
+\nr{09-signaling-calcium-flux-worked}{Calcium released per \ce{IP3} receptor opening}
+An \ce{IP3} receptor channel has a single-channel \ce{Ca^2+} current of about
+$0.5\ \mathrm{pA}$ and stays open for roughly $10\ \mathrm{ms}$ per event.
+
+\ttitle{Charge moved.}
+\[
+Q = I t = 0.5\times10^{-12}\ \mathrm{A}\times 10\times10^{-3}\ \mathrm{s}
+= 5\times10^{-15}\ \mathrm{C}
+\]
+\ttitle{Ions.} \ce{Ca^2+} carries $2$ elementary charges, so
+\[
+n=\frac{5\times10^{-15}}{2\times1.602\times10^{-19}}
+=\frac{5\times10^{-15}}{3.204\times10^{-19}}
+\approx 1.56\times10^{4}\ \text{ions}
+\]
+\ttitle{Concentration change in a microdomain.} In a hemisphere of radius
+$0.5\ \mathrm{\mu m}$, volume
+$\tfrac{2}{3}\pi r^{3}=\tfrac{2}{3}\pi(0.5\times10^{-6})^{3}
+=2.6\times10^{-19}\ \mathrm{m^3}=2.6\times10^{-16}\ \mathrm{L}$, so
+\[
+\Delta c=\frac{1.56\times10^{4}/6.02\times10^{23}}{2.6\times10^{-16}}
+=\frac{2.6\times10^{-20}}{2.6\times10^{-16}}=1.0\times10^{-4}\ \mathrm{M}
+\]
+that is $100\ \mathrm{\mu M}$ in the microdomain, a thousandfold above resting
+cytosolic \ce{Ca^2+}.
+
+\ttitle{Check.} Cells buffer $98$ to $99\%$ of entering \ce{Ca^2+}, so the free
+concentration actually seen is $1$ to $2\%$ of $100\ \mathrm{\mu M}$, i.e.\ $1$ to
+$2\ \mathrm{\mu M}$, which is precisely the measured amplitude of a \ce{Ca^2+} puff.
+\tm{$\surd$} Whole-cell averaging over a $1\ \mathrm{pL}$ cell would give
+$\Delta c=2.6\times10^{-20}/10^{-12}=26\ \mathrm{nM}$, invisible: the signal exists
+only because it is local. \tm{$\surd$}
+\end{calcbox}
+
+\begin{obsbox}[title={WORTH NOTICING: the PKC family is three families}]
+\nr{09-signaling-pkc-isoforms}{PKC isoform classes}
+Conventional PKC ($\alpha,\ \beta\mathrm{I},\ \beta\mathrm{II},\ \gamma$) needs DAG
+and \ce{Ca^2+} and phosphatidylserine. Novel PKC ($\delta,\ \epsilon,\ \eta,\
+\theta$) needs DAG but not \ce{Ca^2+}, because its \ce{C2} domain lacks the
+calcium-coordinating aspartates. Atypical PKC ($\zeta,\ \iota/\lambda$) needs
+neither, and is regulated instead by \ce{PIP3} and protein partners. Nine to eleven
+genes, one catalytic chemistry, three completely different input requirements: a
+single kinase family implementing three different logic gates.
+\end{obsbox}
+
+\begin{warnbox}[title={TRAP: five errors in the phosphoinositide pathway}]
+\nr{09-signaling-pip-traps}{Phosphoinositide pathway traps}
+\begin{itemize}
+\item "\ce{IP3} opens channels in the plasma membrane." No: the \ce{IP3} receptor is
+an \emph{ER} channel. Plasma membrane \ce{Ca^2+} entry in this pathway is
+store-operated, through \ce{Orai1} gated by \ce{STIM1}, and is a consequence of store
+depletion, not of \ce{IP3}.
+\item "DAG diffuses to the nucleus." No: DAG has two fatty acyl chains and stays in
+the bilayer. That is why PKC must come to the membrane.
+\item "\ce{IP3} and \ce{PIP3} are the same thing." They are not even the same class:
+\ce{IP3} is a soluble sugar phosphate from PLC; \ce{PIP3} is a membrane lipid from
+\ce{PI3K}. One mobilises calcium, the other recruits \ce{Akt}.
+\item "Phorbol esters are PKC inhibitors." They are potent, poorly metabolised PKC
+\emph{activators} that substitute for DAG, which is why they are tumour promoters.
+\item "$\mathrm{G}\alpha_q$ pathways do not use cAMP so the two are independent."
+Cross-talk is heavy: \ce{Ca^2+}-calmodulin activates \ce{AC1} and \ce{AC8} and
+inhibits \ce{AC5} and \ce{AC6}, and PKC phosphorylates and modulates several cyclases.
+\end{itemize}
+\end{warnbox}
+
+\begin{tipbox}[title={TECHNIQUE: tell a $\mathrm{G}_q$ response from a $\mathrm{G}_s$ response}]
+\nr{09-signaling-gq-vs-gs-discrimination}{Discriminating $\mathrm{G}_q$ from $\mathrm{G}_s$}
+Trigger: a question that gives a hormone and a measured output.
+\begin{itemize}
+\item Response abolished in \ce{Ca^2+}-free medium containing \ce{EGTA} and
+unaffected by forskolin: $\mathrm{G}_q$.
+\item Response mimicked by forskolin or by dibutyryl-cAMP: $\mathrm{G}_s$.
+\item Response mimicked by a phorbol ester: the DAG-PKC arm of $\mathrm{G}_q$.
+\item Response abolished by pertussis toxin: $\mathrm{G}_{i/o}$, and note this is the
+one family the toxin reports on.
+\item Smooth muscle contracting rather than relaxing: think $\mathrm{G}_q$ and
+\ce{Ca^2+}-calmodulin-myosin light chain kinase, and check
+\pref{physiology} for the mechanics.
+\end{itemize}
+\end{tipbox}

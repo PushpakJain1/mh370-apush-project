@@ -1,0 +1,33 @@
+\input{preamble}
+\input{partnames}
+\input{memomacros}
+\input{sheetstyle}
+\makeindex[title={Index of This Volume},columns=2,intoc]
+\begin{document}
+\begin{titlepage}\thispagestyle{empty}
+\vspace*{0.14\textheight}
+\noindent{\color{tiercat}\rule{\textwidth}{5pt}}\\[3pt]
+\noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[26pt]
+\noindent{\sffamily\bfseries\fontsize{11}{14}\selectfont\color{bionum}THE REFERENCE CATALOGUE}\\[12pt]
+\noindent\begin{minipage}{\textwidth}\raggedright
+{\sffamily\bfseries\fontsize{28}{32}\selectfont\color{bioink}%
+ \hyphenchar\font=-1\hyphenpenalty=10000\exhyphenpenalty=10000 Anatomy, Histology, and Normal Values\par}\end{minipage}\\[16pt]
+\noindent{\color{biogreen}\rule{\textwidth}{1.4pt}}\\[10pt]
+\noindent\begin{minipage}{\textwidth}\raggedright
+{\fontsize{10.5}{14}\selectfont\color{biogreen}%
+Every named entry in this area, each with its precise statement, its conditions, and a line on
+where it is used. This is a reference to look things up in and to train recognition with, not a
+chapter to read straight through.\par}\end{minipage}
+\vfill
+\noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[3pt]
+\noindent{\color{tiercat}\rule{\textwidth}{5pt}}
+\end{titlepage}
+\tableofcontents
+\clearpage
+\InputIfFileExists{catalogue/c09-anatomy-a1}{}{}
+\InputIfFileExists{catalogue/c09-anatomy-a2}{}{}
+\InputIfFileExists{catalogue/c09-anatomy-b1}{}{}
+\InputIfFileExists{catalogue/c09-anatomy-b2}{}{}
+\clearpage
+\printindex
+\end{document}

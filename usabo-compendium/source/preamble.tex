@@ -1,0 +1,177 @@
+% ============================================================
+%  Shared preamble: USABO, IBO and Beyond -- Biology Compendium
+% ============================================================
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper,left=1.10in,right=1.10in,top=1.00in,bottom=0.95in,
+            headsep=17pt,footskip=28pt]{geometry}
+
+% ---- Fonts -------------------------------------------------
+\usepackage{mathpazo}
+\usepackage[scaled=0.90]{helvet}
+\usepackage{courier}
+\usepackage[expansion=false]{microtype}
+\linespread{1.22}
+\setlength{\parskip}{8.5pt}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+
+% ---- Mathematics and chemistry -----------------------------
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage[version=4]{mhchem}
+\allowdisplaybreaks
+
+% ---- Graphics and tables -----------------------------------
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{adjustbox}
+\usepackage{longtable}
+\usepackage{enumitem}
+\setlist{nosep,topsep=3pt,itemsep=3pt,parsep=0pt,leftmargin=15pt}
+
+\usepackage{tikz}
+\usetikzlibrary{calc,intersections,angles,quotes,patterns,arrows.meta,positioning,decorations.pathreplacing}
+
+% ---- Colours -----------------------------------------------
+\usepackage{xcolor}
+\definecolor{bioink}{HTML}{16332B}
+\definecolor{biogreen}{HTML}{2C6E54}
+\definecolor{bioline}{HTML}{C5D2CB}
+\definecolor{biogrey}{HTML}{F3F6F4}
+\definecolor{biogold}{HTML}{9C6B1E}
+\definecolor{bioteal}{HTML}{1F6F6B}
+\definecolor{biored}{HTML}{9B2C2C}
+\definecolor{bioplum}{HTML}{6B3A63}
+\definecolor{bionum}{HTML}{9BA8A1}
+\definecolor{tiercore}{HTML}{2C6E54}
+\definecolor{tierbeyond}{HTML}{6B5B3E}
+\definecolor{tiercat}{HTML}{3A5A7A}
+
+% ---- Boxes -------------------------------------------------
+\usepackage[most]{tcolorbox}
+\tcbset{biobase/.style={enhanced,arc=0pt,outer arc=0pt,
+  left=11pt,right=0pt,top=5pt,bottom=5pt,
+  boxrule=0pt,colframe=white,colback=white,
+  fonttitle=\sffamily\bfseries\footnotesize,
+  toptitle=0pt,bottomtitle=3pt,
+  before skip=13pt,after skip=13pt}}
+
+\newtcolorbox{keybox}[1][]{biobase,breakable,colback=biogrey,colbacktitle=biogrey,
+  coltitle=biogreen,borderline west={2.2pt}{0pt}{biogreen},#1}
+\newtcolorbox{thmbox}[1][]{biobase,breakable,colback=white,colbacktitle=white,
+  coltitle=bioink,borderline west={2.2pt}{0pt}{bioink},#1}
+\newtcolorbox{defbox}[1][]{biobase,breakable,colback=white,colbacktitle=white,
+  coltitle=bioteal,borderline west={2.2pt}{0pt}{bioteal},#1}
+\newtcolorbox{warnbox}[1][]{biobase,breakable,colback=white,colbacktitle=white,
+  coltitle=biored,borderline west={2.2pt}{0pt}{biored},#1}
+\newtcolorbox{tipbox}[1][]{biobase,breakable,colback=white,colbacktitle=white,
+  coltitle=biogreen,borderline west={2.2pt}{0pt}{biogreen},#1}
+\newtcolorbox{obsbox}[1][]{biobase,breakable,colback=white,colbacktitle=white,
+  coltitle=biogold,borderline west={2.2pt}{0pt}{biogold},#1}
+\newtcolorbox{calcbox}[1][]{biobase,breakable,colback=biogrey,colbacktitle=biogrey,
+  coltitle=bioink,borderline west={2.2pt}{0pt}{bionum},#1}
+\newtcolorbox{expbox}[1][]{biobase,breakable,colback=white,colbacktitle=white,
+  coltitle=bioplum,borderline west={2.2pt}{0pt}{bioplum},#1}
+
+% Non-breakable clones, for use inside minipages and tables
+\newtcolorbox{keyboxnb}[1][]{biobase,colback=biogrey,colbacktitle=biogrey,
+  coltitle=biogreen,borderline west={2.2pt}{0pt}{biogreen},#1}
+\newtcolorbox{thmboxnb}[1][]{biobase,colback=white,colbacktitle=white,
+  coltitle=bioink,borderline west={2.2pt}{0pt}{bioink},#1}
+\newtcolorbox{calcboxnb}[1][]{biobase,colback=biogrey,colbacktitle=biogrey,
+  coltitle=bioink,borderline west={2.2pt}{0pt}{bionum},#1}
+
+% ---- Index -------------------------------------------------
+\usepackage{imakeidx}
+
+% ---- Sectioning --------------------------------------------
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=biogreen,urlcolor=biogreen,citecolor=biogreen,
+  bookmarksnumbered=true}
+
+\titleformat{\section}{\sffamily\bfseries\large\color{bioink}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\sffamily\bfseries\normalsize\color{biogreen}}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\titlespacing*{\subsection}{0pt}{12pt}{4pt}
+
+% ---- Running heads -----------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\sffamily\footnotesize\color{bionum}\leftmark}
+\fancyfoot[C]{\sffamily\footnotesize\color{bionum}\thepage}
+
+% ---- Small utilities ---------------------------------------
+\newcommand{\tm}[1]{\textbf{#1}}
+\newcommand{\dg}{^{\circ}}
+\newcommand{\degc}{\,^{\circ}\mathrm{C}}
+\newcommand{\sn}[1]{\textit{#1}}
+\newcommand{\ttitle}[1]{\textbf{\textcolor{bioink}{#1}}}
+\newcommand{\secchip}[1]{%
+  \noindent{\sffamily\bfseries\fontsize{13.5}{16.5}\selectfont\color{bioink}\raggedright #1\par}%
+  \vspace{4pt}%
+  \noindent{\color{biogreen}\rule{\textwidth}{1.1pt}}\par}
+
+% Named result: index entry plus a label the catalogue can point at
+\newcommand{\nr}[2]{\index{#2}\label{nr:#1}}
+\newcommand{\nrrow}[2]{#2\dotfill\pageref{nr:#1}\\}
+
+% ---- Parts -------------------------------------------------
+\newcounter{biopart}
+\newcommand{\prepart}{}
+\newcommand{\pref}[1]{Part~\ref{part:#1}}
+\newcommand{\prefn}[1]{\ref{part:#1}}
+
+\newcommand{\parttitle}[3][]{%
+  \clearpage
+  \refstepcounter{biopart}%
+  \ifx\relax#1\relax\else\label{part:#1}\fi
+  \markboth{#2}{#2}%
+  \thispagestyle{fancy}%
+  \vspace*{6pt}%
+  \noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[6pt]
+  \noindent{\sffamily\bfseries\footnotesize\color{bionum}PART \thebiopart}\\[8pt]
+  \noindent\begin{minipage}{\textwidth}\raggedright
+    {\sffamily\bfseries\fontsize{22}{26}\selectfont\color{bioink}%
+     \hyphenchar\font=-1\hyphenpenalty=10000\exhyphenpenalty=10000 #2\par}%
+  \end{minipage}\\[10pt]
+  \noindent{\color{biogreen}\rule{\textwidth}{1.4pt}}\\[8pt]
+  \noindent\begin{minipage}{\textwidth}\raggedright
+    {\fontsize{10.5}{14}\selectfont\color{biogreen} #3\par}%
+  \end{minipage}
+  \vspace{10pt}\par
+  \addcontentsline{toc}{section}{\protect\numberline{\thebiopart}#2}%
+}
+
+% ---- Tier dividers -----------------------------------------
+\newcommand{\tierpartline}[1]{\noindent\hangindent=12pt {\color{biogreen}\textbullet}\ #1\par\vspace{1pt}}
+\newcommand{\tierdivider}[4]{%
+  \clearpage
+  \thispagestyle{empty}%
+  \vspace*{0.08\textheight}
+  \noindent{\color{tier#1}\rule{\textwidth}{5pt}}\\[3pt]
+  \noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[26pt]
+  \noindent\begin{minipage}{\textwidth}\raggedright
+    {\sffamily\bfseries\fontsize{30}{36}\selectfont\color{bioink} #2\par}%
+  \end{minipage}\\[16pt]
+  \noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[12pt]
+  \noindent\begin{minipage}{\textwidth}\raggedright
+    {\fontsize{11.5}{16}\selectfont\color{biogreen} #3\par}%
+  \end{minipage}\\[20pt]
+  {\footnotesize\begin{multicols}{2}#4\end{multicols}}
+  \vfill
+  \clearpage
+}
+
+% ---- Table safety: never let a tabular run past the measure --
+\usepackage{etoolbox}
+\BeforeBeginEnvironment{tabular}{\begin{adjustbox}{max width=\linewidth}}
+\AfterEndEnvironment{tabular}{\end{adjustbox}}

@@ -1,0 +1,39 @@
+% Macros for the memorization sheet and the reference catalogue.
+\setlength{\parskip}{2pt}
+\definecolor{memnote}{HTML}{55636F}
+
+% A section heading inside one part of the sheet
+\newcommand{\memsec}[1]{%
+  \vspace{8pt}\noindent{\sffamily\bfseries\footnotesize\color{bionum}\MakeUppercase{#1}\par}\vspace{2pt}}
+
+% One entry: name, formula (may be empty), one-line note
+\newcommand{\mem}[3]{%
+  \index{#1}%
+  \par\noindent{\sffamily\bfseries\small\color{bioink}#1}\par
+  \ifblank{#2}{}{\noindent\hspace{10pt}\adjustbox{max width=\dimexpr\textwidth-10pt\relax}{$\displaystyle #2$}\par}%
+  \ifblank{#3}{}{\noindent\hspace{10pt}\begin{minipage}{\dimexpr\textwidth-10pt\relax}\footnotesize\color{memnote}#3\end{minipage}\par}%
+  \vspace{3pt}}
+
+% A table of values, reproduced verbatim
+\newcommand{\memtable}[1]{\vspace{2pt}\noindent\hspace{10pt}\begin{minipage}{\dimexpr\textwidth-10pt\relax}\footnotesize #1\end{minipage}\par\vspace{3pt}}
+
+% Catalogue: a sub-area heading, and one theorem entry
+\newcommand{\catsec}[1]{%
+  \vspace{8pt}\noindent{\sffamily\bfseries\footnotesize\color{bionum}\MakeUppercase{#1}\par}\vspace{2pt}}
+\newcommand{\thm}[3]{%
+  \index{#1}%
+  \par\noindent{\sffamily\bfseries\small\color{bioink}#1}\par
+  \noindent\hspace{10pt}\begin{minipage}{\dimexpr\textwidth-10pt\relax}\small #2\ifblank{#3}{}{\ {\footnotesize\color{memnote}#3}}\end{minipage}\par
+  \vspace{4pt}}
+
+% Part and tier headings for the assembled sheet
+\newcommand{\memtier}[1]{%
+  \clearpage\vspace*{4pt}\noindent{\color{bioink}\rule{\textwidth}{4pt}}\\[6pt]
+  \noindent\begin{minipage}{\textwidth}\raggedright
+    {\sffamily\bfseries\fontsize{24}{28}\selectfont\color{bioink}%
+     \hyphenchar\font=-1\hyphenpenalty=10000\exhyphenpenalty=10000 #1\par}%
+  \end{minipage}\vspace{8pt}}
+\newcommand{\mempart}[1]{%
+  \vspace{14pt}\noindent{\sffamily\bfseries\large\color{biogreen}#1\par}
+  \noindent{\color{biogreen}\rule{\textwidth}{0.9pt}}\par\vspace{2pt}
+  \addcontentsline{toc}{section}{#1}\markboth{#1}{#1}}

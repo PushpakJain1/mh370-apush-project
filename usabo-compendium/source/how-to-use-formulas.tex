@@ -1,0 +1,165 @@
+\input{preamble}
+\input{partnames}
+\begin{document}
+\begin{titlepage}\thispagestyle{empty}
+\vspace*{0.14\textheight}
+\noindent{\color{tiercat}\rule{\textwidth}{5pt}}\\[3pt]
+\noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[26pt]
+\noindent{\sffamily\bfseries\fontsize{11}{14}\selectfont\color{bionum}START HERE}\\[12pt]
+\noindent\begin{minipage}{\textwidth}\raggedright
+{\sffamily\bfseries\fontsize{30}{34}\selectfont\color{bioink}%
+ \hyphenchar\font=-1 How to Use These Formulas\par}\end{minipage}\\[16pt]
+\noindent{\color{biogreen}\rule{\textwidth}{1.4pt}}\\[10pt]
+\noindent\begin{minipage}{\textwidth}\raggedright
+{\fontsize{10.5}{14}\selectfont\color{biogreen}%
+Which equation a question is asking for, how to recognise it from the wording, what to
+memorise against what to rebuild, and the checks that catch a wrong answer before you
+write it down.\par}\end{minipage}
+\vfill
+\noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[3pt]
+\noindent{\color{tiercat}\rule{\textwidth}{5pt}}
+\end{titlepage}
+\tableofcontents
+\clearpage
+
+\section{What is in this zip}
+
+\begin{keybox}[title={The two kinds of file}]
+\begin{itemize}
+\item \tm{The index of every formula}, \texttt{00-Every-Formula-Indexed.pdf}. Every
+      equation, law, constant and normal value in the compendium, stated once with its
+      symbols defined and nothing derived, ordered by subject with an alphabetical
+      index at the back. Revise from this file and look things up in it.
+\item \tm{The formula volumes}, in \texttt{01-Volumes}. One per quantitative area. Part
+      one derives every formula in the area, states the conditions under which it holds,
+      and works the calculations with the arithmetic shown. Part two is the bare formula
+      sheet for the same material.
+\end{itemize}
+The companion zip, \texttt{USABO-Biology-Concepts}, holds the biology these equations
+describe. Work the two together: a Nernst potential means nothing without the ion
+gradients, and the ion gradients are hard to remember without the calculation.
+\end{keybox}
+
+\section{Why a biology exam has formulas at all}
+
+Every stage of this competition asks for arithmetic, and it is the part most candidates
+have not practised. The Open Exam hides calculations inside multiple choice options, so
+a wrong unit conversion looks exactly like a plausible distractor. The Semifinal Exam
+asks for them openly, in data analysis questions where the numbers come off a figure.
+The IBO practicals are almost entirely calculation: a magnification, a dilution, a rate,
+a statistic, an error estimate.
+
+\begin{obsbox}[title={WORTH NOTICING: the recurring seven}]
+Across past papers, seven calculations recur more than any others: magnification and
+true size from a micrograph; a dilution or a solution preparation; Hardy-Weinberg allele
+frequencies; a chi-square goodness of fit; a rate from a graph's gradient; a Nernst or
+Goldman potential; and a population growth or mark-recapture estimate. If your practice
+time is short, those seven are where it goes.
+\end{obsbox}
+
+\section{Recognising which formula is wanted}
+
+\begin{keybox}[title={The wording-to-equation key}]
+\begin{itemize}
+\item ``What fraction of the population carries'' $\Rightarrow$ Hardy-Weinberg, and
+      usually $2pq$ rather than $q^2$.
+\item ``Do the observed numbers differ from expected'' $\Rightarrow$ chi-square, and
+      state the degrees of freedom before computing.
+\item ``Equilibrium potential'' or ``at what voltage does the ion stop moving''
+      $\Rightarrow$ Nernst. ``Resting potential'' with several permeabilities given
+      $\Rightarrow$ Goldman.
+\item ``Per unit time, across a surface, given a gradient'' $\Rightarrow$ Fick.
+\item ``Half maximal'' anything $\Rightarrow$ $K_m$, or $P_{50}$, or an $EC_{50}$: the
+      same algebra each time.
+\item ``How much of the plasma is cleared'' $\Rightarrow$ clearance, $C=UV/P$.
+\item ``Water moves which way'' $\Rightarrow$ water potential, and check the sign twice.
+\item ``Rate doubles every ten degrees'' $\Rightarrow$ $Q_{10}$.
+\item ``Estimate the population'' from two captures $\Rightarrow$ Lincoln index.
+\item ``Energy available to the next trophic level'' $\Rightarrow$ transfer efficiency,
+      and do not assume exactly ten per cent unless told to.
+\end{itemize}
+\end{keybox}
+
+\section{What to memorise and what to rebuild}
+
+\begin{keybox}[title={Memorise these outright}]
+Hardy-Weinberg in both forms; the chi-square statistic; Nernst at body temperature;
+Fick's law; the Michaelis-Menten equation and its double reciprocal form;
+Henderson-Hasselbalch; water potential and its components; clearance; cardiac output;
+the exponential and logistic growth equations; the Lincoln index; magnification and true
+size; the Beer-Lambert law; $Q_{10}$; and the gas constant, Faraday constant and
+Avogadro number.
+\end{keybox}
+
+\begin{keybox}[title={Rebuild these from a principle, never memorise}]
+Anything with several variants: the inhibition equations, which all follow from where
+the inhibitor binds; the acid-base compensations, which follow from
+Henderson-Hasselbalch; the selection recursions, which follow from a fitness table; the
+diversity indices, which follow from what each is trying to weight; and every
+differential equation model, which follows from writing down gains minus losses.
+\end{keybox}
+
+\section{The checks that catch a wrong answer}
+
+\begin{tipbox}[title={TECHNIQUE: four audits, in this order}]
+\begin{enumerate}
+\item \tm{Units.} Carry them through every line. A clearance must come out in
+      $\mathrm{mL\,min^{-1}}$; if it does not, the error is upstream of the arithmetic.
+\item \tm{Direction and sign.} Does water move the way your answer says? Is the
+      potential negative for an anion? Is the free energy negative for a spontaneous
+      step? Most lost marks are sign errors, not algebra.
+\item \tm{Magnitude.} Compare with a value you know. A resting potential near
+      $-70\ \mathrm{mV}$, a GFR near $125\ \mathrm{mL\,min^{-1}}$, a bacterial doubling
+      time of twenty minutes. An answer three orders of magnitude out is a unit prefix
+      slip.
+\item \tm{Limit case.} Set a variable to zero or to infinity and see whether the formula
+      still says something sensible. This catches an inverted fraction instantly.
+\end{enumerate}
+\end{tipbox}
+
+\begin{warnbox}[title={TRAP: the six errors that cost the most marks}]
+\begin{itemize}
+\item Using $q^2$ where the question asked for carriers, which is $2pq$.
+\item Forgetting that Hardy-Weinberg for an X linked locus has different male and
+      female expectations.
+\item Mixing $\mathrm{mM}$ with $\mathrm{M}$ inside a log, which shifts the answer by
+      exactly a factor of $\ln 1000$.
+\item Reading a semilog axis as if it were linear.
+\item Quoting standard error as standard deviation, or the reverse, when a figure's
+      error bars are unlabelled. Say which you are assuming.
+\item Rounding at every intermediate step instead of the last one.
+\end{itemize}
+\end{warnbox}
+
+\section{An order to work through the formula volumes}
+
+\begin{keybox}[title={Dependency order}]
+\begin{enumerate}
+\item Units, scaling and dimensional analysis. Everything else assumes it.
+\item Biostatistics, then hypothesis tests and chi-square. These are used by every
+      later volume and by every data question in the exam.
+\item Probability and pedigrees, then Mendelian and linkage calculations, then
+      Hardy-Weinberg, then selection and drift, in that order. Each rests on the last.
+\item Thermodynamics and redox, then enzyme kinetics. Kinetics needs the free energy
+      language.
+\item Diffusion and water potential, then membrane potentials. Both are Fick's law
+      wearing different hats.
+\item Cardiorespiratory, then renal and acid-base, then metabolic rate and thermal
+      physiology. The physiology block, in the order the concepts zip teaches it.
+\item Photosynthesis and plant calculations.
+\item Population growth, then community and ecosystem formulas, then epidemiology. The
+      last is the same mathematics as the first with a different label.
+\item Laboratory and bioinformatic calculations, at any point, in short sittings. These
+      are drills rather than theory.
+\item Calculus and modelling last. It explains where the earlier models came from, and
+      it is the volume that makes the rest feel like one subject instead of twenty.
+\end{enumerate}
+\end{keybox}
+
+\begin{tipbox}[title={How to practise}]
+Do not read a worked calculation. Cover the solution, do it, then compare. A formula
+volume read passively transfers almost nothing, because the skill being tested is
+execution under time pressure, and execution is only trained by executing. Twenty
+minutes of covered-solution practice beats two hours of reading, every time.
+\end{tipbox}
+\end{document}

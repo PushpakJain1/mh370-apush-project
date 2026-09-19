@@ -1,0 +1,35 @@
+\input{preamble}
+\input{partnames}
+\input{memomacros}
+\input{sheetstyle}
+\makeindex[title={Index of This Volume},columns=2,intoc]
+\begin{document}
+\begin{titlepage}\thispagestyle{empty}
+\vspace*{0.14\textheight}
+\noindent{\color{tiercore}\rule{\textwidth}{5pt}}\\[3pt]
+\noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[26pt]
+\noindent{\sffamily\bfseries\fontsize{11}{14}\selectfont\color{bionum}TIER ONE. THE CORE SYLLABUS}\\[12pt]
+\noindent\begin{minipage}{\textwidth}\raggedright
+{\sffamily\bfseries\fontsize{28}{32}\selectfont\color{bioink}%
+ \hyphenchar\font=-1\hyphenpenalty=10000\exhyphenpenalty=10000 Ecosystems, Biomes, Biogeochemistry, and Conservation\par}\end{minipage}\\[16pt]
+\noindent{\color{biogreen}\rule{\textwidth}{1.4pt}}\\[10pt]
+\noindent\begin{minipage}{\textwidth}\raggedright
+{\fontsize{10.5}{14}\selectfont\color{biogreen}%
+Part one teaches the topic and works the methods. Part two is the bare memorization sheet for the
+same material, every fact and formula stated once with no commentary. The index at the back covers both.\par}\end{minipage}
+\vfill
+\noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[3pt]
+\noindent{\color{tiercore}\rule{\textwidth}{5pt}}
+\end{titlepage}
+\tableofcontents
+\clearpage
+\memtier{Part One. Learn It}
+\InputIfFileExists{sections/45-ecosystems-1}{}{}
+\InputIfFileExists{sections/45-ecosystems-2}{}{}
+\InputIfFileExists{sections/45-ecosystems-3}{}{}
+\memtier{Part Two. Memorize It}
+\InputIfFileExists{memo/45-ecosystems-1}{}{}
+\InputIfFileExists{memo/45-ecosystems-2}{}{}
+\clearpage
+\printindex
+\end{document}

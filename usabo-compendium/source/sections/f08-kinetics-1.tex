@@ -1,0 +1,645 @@
+\parttitle[f-kinetics]{Enzyme Kinetics Equations}{Michaelis-Menten and every extension, with the graphs and the worked numbers.}
+
+\section{Rate, rate constants, order of reaction, and the integrated rate equations biology uses}
+
+Kinetics is the study of how fast a reaction goes, and it answers a different question
+from thermodynamics. Thermodynamics tells you whether \ce{C6H12O6 + 6O2 -> 6CO2 + 6H2O}
+can happen ($\Delta G^{\circ\prime} = -2870\ \mathrm{kJ\,mol^{-1}}$, so overwhelmingly yes);
+kinetics tells you that a bowl of glucose sitting on a bench at $25\degc$ will take
+longer than the age of the universe to do it, because the activation barrier is roughly
+$\Delta G^{\ddagger} \approx 100\text{--}130\ \mathrm{kJ\,mol^{-1}}$. Every enzyme in
+this volume is a device for lowering that barrier without touching $\Delta G$ at all.
+
+\begin{defbox}[title={DEFINITIONS: the vocabulary of rate}]
+\nr{f08-kinetics-rate-def}{Reaction rate}
+\tm{Rate} (or velocity, $v$) is the change in concentration of a species per unit time,
+signed so that it is positive: $v=-d[\mathrm{S}]/dt=+d[\mathrm{P}]/dt$ for
+\ce{S -> P}. Standard units in enzymology are
+$\mathrm{mol\,L^{-1}\,s^{-1}}$, but assays are usually reported as
+$\mu\mathrm{mol\,min^{-1}}$ of product in a stated volume.
+\nr{f08-kinetics-rate-law}{Rate law}
+The \tm{rate law} is the experimentally determined equation linking $v$ to
+concentrations, e.g. $v=k[\mathrm{A}][\mathrm{B}]$. It cannot be read off the balanced
+equation; it must be measured.
+\nr{f08-kinetics-rate-constant}{Rate constant}
+The \tm{rate constant} $k$ is the proportionality factor in the rate law. It depends on
+temperature, pH, ionic strength and solvent, but not on concentration.
+\nr{f08-kinetics-order-def}{Order of reaction}
+The \tm{order} with respect to a species is the exponent on that species in the rate
+law. The \tm{overall order} is the sum of the exponents.
+\nr{f08-kinetics-molecularity}{Molecularity}
+\tm{Molecularity} is the number of molecules colliding in one elementary step; it is a
+mechanistic integer. Order is empirical and may be zero, fractional or negative.
+\nr{f08-kinetics-initial-rate}{Initial rate}
+The \tm{initial rate} $v_0$ is the rate at $t=0$, measured before more than about
+$5$ to $10\%$ of substrate is consumed and before product accumulates.
+\end{defbox}
+
+The units of $k$ are fixed by the overall order, and this is the single fastest way to
+catch an algebra error on an exam. Since $v$ always has units of
+$\mathrm{M\,s^{-1}}$, a rate law of overall order $n$ forces $k$ to carry
+$\mathrm{M^{1-n}\,s^{-1}}$.
+
+\begin{keybox}[title={MEMORIZE: orders, integrated forms, half-lives and units of $k$}]
+\nr{f08-kinetics-integrated-forms}{Integrated rate equations}
+For \ce{A -> P} with $[\mathrm{A}]_0$ the starting concentration:
+\[
+\text{zero order: } v=k,\qquad [\mathrm{A}]_t=[\mathrm{A}]_0-kt,\qquad
+t_{1/2}=\frac{[\mathrm{A}]_0}{2k}
+\]
+\[
+\text{first order: } v=k[\mathrm{A}],\qquad \ln[\mathrm{A}]_t=\ln[\mathrm{A}]_0-kt,
+\qquad t_{1/2}=\frac{\ln 2}{k}=\frac{0.693}{k}
+\]
+\[
+\text{second order: } v=k[\mathrm{A}]^2,\qquad
+\frac{1}{[\mathrm{A}]_t}=\frac{1}{[\mathrm{A}]_0}+kt,\qquad
+t_{1/2}=\frac{1}{k[\mathrm{A}]_0}
+\]
+\nr{f08-kinetics-units-of-k}{Units of the rate constant by order}
+Units of $k$: zero order $\mathrm{M\,s^{-1}}$; first order $\mathrm{s^{-1}}$; second
+order $\mathrm{M^{-1}\,s^{-1}}$.
+\nr{f08-kinetics-halflife-independence}{Concentration independence of first-order half-life}
+Only the first-order half-life is independent of $[\mathrm{A}]_0$. That is why
+radioactive decay and single-molecule unfolding have fixed half-lives and why
+zero-order elimination does not.
+\end{keybox}
+
+\begin{tabular}{@{}lllp{3.4cm}@{}}
+\toprule
+\textbf{Order} & \textbf{Linear plot} & \textbf{Units of $k$} & \textbf{Biological example}\\
+\midrule
+0 & $[\mathrm{A}]$ vs $t$ & $\mathrm{M\,s^{-1}}$ & Ethanol clearance; any enzyme at $[\mathrm{S}]\gg K_m$\\
+1 & $\ln[\mathrm{A}]$ vs $t$ & $\mathrm{s^{-1}}$ & Isotope decay; most drug clearance; $\mathrm{ES\rightarrow E+P}$\\
+2 & $1/[\mathrm{A}]$ vs $t$ & $\mathrm{M^{-1}\,s^{-1}}$ & Dimerisation; $\mathrm{E}+\mathrm{S}$ association step\\
+Mixed & none & mixed & Michaelis-Menten overall, order $1\rightarrow 0$ in $[\mathrm{S}]$\\
+\bottomrule
+\end{tabular}
+
+\begin{thmbox}[title={PRINCIPLE: enzymes change the rate constant, never the equilibrium}]
+\nr{f08-kinetics-catalyst-principle}{Catalyst principle}
+A catalyst lowers $\Delta G^{\ddagger}$ for the forward and reverse directions by the
+same amount, so it multiplies $k_f$ and $k_r$ by the same factor and leaves
+$K_{eq}=k_f/k_r$ untouched. An enzyme therefore accelerates the approach to
+equilibrium and shifts nothing.
+\nr{f08-kinetics-eyring}{Eyring equation and rate enhancement}
+The transition-state relation
+$k=\dfrac{k_BT}{h}e^{-\Delta G^{\ddagger}/RT}$ gives the useful rule of thumb that at
+$25\degc$ each $5.7\ \mathrm{kJ\,mol^{-1}}$ removed from the barrier multiplies the
+rate by $10$. Enzymes achieve rate enhancements of $10^{6}$ to $10^{17}$, which
+corresponds to removing $34$ to $97\ \mathrm{kJ\,mol^{-1}}$. Orotidine
+$5'$-monophosphate decarboxylase sits at the top of that range,
+$\approx 10^{17}$-fold, with an uncatalysed half-life of $78$ million years.
+\end{thmbox}
+
+\begin{warnbox}[title={TRAP: order read off the stoichiometric equation}]
+\nr{f08-kinetics-trap-order-stoich}{Order is not stoichiometry}
+The wrong belief: for \ce{2A -> P} the rate law must be $v=k[\mathrm{A}]^2$. The
+correction: order is empirical. The decomposition of \ce{H2O2} catalysed by iodide is
+first order in \ce{H2O2} and first order in \ce{I-} despite the balanced equation
+\ce{2H2O2 -> 2H2O + O2}. Only for a single elementary step does molecularity equal
+order. In enzymology the overall reaction \ce{S -> P} is first order at low
+$[\mathrm{S}]$ and zero order at high $[\mathrm{S}]$ with no change of stoichiometry
+whatsoever.
+\end{warnbox}
+
+\begin{calcbox}[title={WORKED: first-order decay of a labelled substrate}]
+\nr{f08-kinetics-calc-first-order}{Worked first-order decay}
+An esterase hydrolyses a substrate present at $[\mathrm{S}]_0=2.0\ \mu\mathrm{M}$,
+far below $K_m=250\ \mu\mathrm{M}$, so the loss is first order with observed constant
+$k_{obs}=0.0231\ \mathrm{s^{-1}}$.
+
+\ttitle{Half-life.}
+\[
+t_{1/2}=\frac{0.693}{0.0231\ \mathrm{s^{-1}}}=30.0\ \mathrm{s}
+\]
+
+\ttitle{Time to fall to $10\%$ of the start.}
+\[
+t=\frac{\ln([\mathrm{S}]_0/[\mathrm{S}]_t)}{k_{obs}}
+=\frac{\ln 10}{0.0231}=\frac{2.303}{0.0231}=99.7\ \mathrm{s}
+\]
+
+\ttitle{Concentration remaining at $t=45\ \mathrm{s}$.}
+\[
+[\mathrm{S}]_{45}=2.0\,e^{-0.0231\times 45}=2.0\,e^{-1.040}=2.0\times 0.3535
+=0.71\ \mu\mathrm{M}
+\]
+
+\ttitle{Check.} $99.7\ \mathrm{s}$ is $3.32$ half-lives, and
+$2^{-3.32}=0.100$, so $10\%$ remains. $45\ \mathrm{s}$ is $1.5$ half-lives and
+$2^{-1.5}=0.354$, giving $0.71\ \mu\mathrm{M}$. Both routes agree. \tm{$\surd$}
+\end{calcbox}
+
+\begin{obsbox}[title={WORTH NOTICING: the isotope half-lives an exam expects}]
+\nr{f08-kinetics-isotope-halflives}{Half-lives of tracer isotopes}
+Every tracer used in classical biology obeys the first-order law above, so
+$k=0.693/t_{1/2}$ converts a half-life into a decay constant directly.
+$^{32}\mathrm{P}$: $14.3\ \mathrm{d}$. $^{35}\mathrm{S}$: $87.4\ \mathrm{d}$.
+$^{125}\mathrm{I}$: $59.4\ \mathrm{d}$. $^{3}\mathrm{H}$: $12.3\ \mathrm{yr}$.
+$^{14}\mathrm{C}$: $5730\ \mathrm{yr}$, so
+$k=0.693/5730=1.21\times10^{-4}\ \mathrm{yr^{-1}}$. That last number is the one
+radiocarbon dating questions want.
+\end{obsbox}
+
+\begin{tipbox}[title={TECHNIQUE: deciding the order from a data table in thirty seconds}]
+\nr{f08-kinetics-technique-order-id}{Identifying order from data}
+Trigger: a table of $[\mathrm{A}]$ against $t$, or of $v$ against $[\mathrm{A}]$.
+\begin{itemize}
+\item Equal absolute drops in $[\mathrm{A}]$ per equal time interval: zero order.
+\item Equal fractional drops (always halving in the same time): first order.
+\item $[\mathrm{A}]$ falling more and more slowly than exponentially, with
+$1/[\mathrm{A}]$ rising linearly: second order.
+\item Doubling $[\mathrm{A}]$ doubles $v$: first order in A. Doubling $[\mathrm{A}]$
+quadruples $v$: second order. Doubling $[\mathrm{A}]$ does nothing: zero order,
+which for an enzyme means you are already saturated.
+\end{itemize}
+\end{tipbox}
+
+Zero-order kinetics is the signature of a saturated catalyst, and the clinical example
+is worth memorising because the numbers are asked for. Ethanol is cleared by alcohol
+dehydrogenase with $K_m\approx 1\ \mathrm{mM}$, while a legally intoxicating blood level
+is $17$ to $22\ \mathrm{mM}$, twenty times $K_m$. The enzyme is therefore saturated and
+elimination is zero order at roughly $7\ \mathrm{g\,h^{-1}}$ for a $70\ \mathrm{kg}$
+adult, quoted in the range $6$ to $10\ \mathrm{g\,h^{-1}}$, equivalent to a fall in
+blood alcohol concentration of $0.015$ to $0.018\ \mathrm{g\,per\,100\ mL}$ per hour.
+No matter how drunk the person is, the removal rate per hour is the same, which is
+exactly what a zero-order law predicts and what a first-order law would not.
+
+\begin{obsbox}[title={WORTH NOTICING: pseudo-first-order is how bimolecular steps are measured}]
+\nr{f08-kinetics-pseudo-first-order}{Pseudo-first-order conditions}
+A genuinely second-order step $v=k[\mathrm{A}][\mathrm{B}]$ becomes first order in A
+if B is held in vast excess, because $[\mathrm{B}]$ then barely changes:
+$v=k_{obs}[\mathrm{A}]$ with $k_{obs}=k[\mathrm{B}]$. Plotting $k_{obs}$ against
+$[\mathrm{B}]$ gives a straight line through the origin whose slope is the true
+second-order constant in $\mathrm{M^{-1}\,s^{-1}}$. Almost every reported
+association rate constant in biochemistry, including the $k_1$ of the next section,
+was obtained this way.
+\end{obsbox}
+
+\section{The Michaelis-Menten equation derived from the steady state assumption, with every symbol defined}
+
+The central observation of enzymology is that $v_0$ against $[\mathrm{S}]$ is not a
+straight line but a rectangular hyperbola: it rises steeply at low $[\mathrm{S}]$,
+bends over, and approaches a ceiling. Any model that explains this must contain a
+saturable binding site, and the minimal such model is one substrate binding reversibly
+to one site followed by an irreversible chemical step.
+
+\begin{keybox}[title={MEMORIZE: the minimal mechanism and its four rate constants}]
+\nr{f08-kinetics-minimal-mechanism}{Minimal enzyme mechanism}
+\[
+\ce{E + S <=>[$k_1$][$k_{-1}$] ES ->[$k_2$] E + P}
+\]
+$k_1$ is the association constant, a second-order constant in
+$\mathrm{M^{-1}\,s^{-1}}$, typically $10^{6}$ to $10^{9}$. $k_{-1}$ is the
+dissociation constant of the complex, first order, $\mathrm{s^{-1}}$, typically
+$1$ to $10^{5}$. $k_2$ is the catalytic step, also written $k_{cat}$, first order,
+$\mathrm{s^{-1}}$. The step \ce{E + P -> ES} is neglected because $v_0$ is measured
+when $[\mathrm{P}]\approx 0$.
+\end{keybox}
+
+\begin{defbox}[title={DEFINITIONS: every symbol in the derivation}]
+\nr{f08-kinetics-symbols}{Symbols of the Michaelis-Menten derivation}
+\begin{itemize}
+\item $[\mathrm{E}]_T$: total enzyme concentration, free plus bound. Constant, because
+enzyme is a catalyst. Typical assay value $10^{-11}$ to $10^{-8}\ \mathrm{M}$.
+\item $[\mathrm{E}]$: free enzyme concentration at any instant.
+\item $[\mathrm{ES}]$: concentration of the enzyme-substrate complex.
+\item $[\mathrm{S}]$: free substrate concentration, taken as equal to the amount added
+because $[\mathrm{S}]\gg[\mathrm{E}]_T$.
+\item $v_0$: initial velocity, $\mathrm{M\,s^{-1}}$.
+\item $V_{\max}$: the limiting velocity as $[\mathrm{S}]\rightarrow\infty$,
+$\mathrm{M\,s^{-1}}$.
+\item $K_m$: the Michaelis constant, units of concentration, $\mathrm{M}$.
+\item $f_{ES}=[\mathrm{ES}]/[\mathrm{E}]_T$: fraction of enzyme in complex, which
+equals $v_0/V_{\max}$.
+\end{itemize}
+\end{defbox}
+
+\begin{thmbox}[title={PRINCIPLE: the steady state assumption}]
+\nr{f08-kinetics-steady-state}{Steady state assumption}
+After a pre-steady-state burst lasting microseconds to milliseconds, $[\mathrm{ES}]$
+becomes constant because it is formed as fast as it is destroyed:
+\[
+\frac{d[\mathrm{ES}]}{dt}=k_1[\mathrm{E}][\mathrm{S}]-k_{-1}[\mathrm{ES}]-k_2[\mathrm{ES}]=0
+\]
+This is valid whenever $[\mathrm{S}]\gg[\mathrm{E}]_T$, typically by a factor of
+$10^{3}$ or more, so that the substrate reservoir is not measurably drained during the
+approach to steady state. It does not require $k_2\ll k_{-1}$, which is what
+distinguishes it from the earlier equilibrium treatment.
+\end{thmbox}
+
+The derivation is four lines and is worth being able to reproduce from memory, because
+the Semifinal Exam has asked for it and because every inhibition equation later in this
+volume is the same algebra with one extra term.
+
+\begin{thmbox}[title={PRINCIPLE: derivation of the Michaelis-Menten equation}]
+\nr{f08-kinetics-mm-derivation}{Michaelis-Menten derivation}
+Step 1, steady state: $k_1[\mathrm{E}][\mathrm{S}]=(k_{-1}+k_2)[\mathrm{ES}]$.
+Step 2, define $K_m$ as the ratio of the constants that destroy the complex to the one
+that makes it:
+\[
+K_m=\frac{k_{-1}+k_2}{k_1}\quad\Longrightarrow\quad
+[\mathrm{E}][\mathrm{S}]=K_m[\mathrm{ES}]
+\]
+Step 3, conservation of enzyme: $[\mathrm{E}]=[\mathrm{E}]_T-[\mathrm{ES}]$, so
+$([\mathrm{E}]_T-[\mathrm{ES}])[\mathrm{S}]=K_m[\mathrm{ES}]$, and solving,
+\[
+[\mathrm{ES}]=\frac{[\mathrm{E}]_T[\mathrm{S}]}{K_m+[\mathrm{S}]}
+\]
+Step 4, the observed rate is the rate of the catalytic step, $v_0=k_2[\mathrm{ES}]$,
+and the maximum possible rate is reached when all enzyme is complexed,
+$V_{\max}=k_2[\mathrm{E}]_T$. Substituting:
+\[
+v_0=\frac{V_{\max}[\mathrm{S}]}{K_m+[\mathrm{S}]}
+\]
+\end{thmbox}
+
+\begin{keybox}[title={MEMORIZE: the Michaelis-Menten equation and its three limits}]
+\nr{f08-kinetics-mm-equation}{Michaelis-Menten equation}
+\[
+v_0=\frac{V_{\max}[\mathrm{S}]}{K_m+[\mathrm{S}]}
+\]
+\nr{f08-kinetics-mm-limits}{Limiting behaviour of the Michaelis-Menten equation}
+\begin{itemize}
+\item $[\mathrm{S}]\ll K_m$: the $K_m$ term dominates the denominator and
+$v_0\approx(V_{\max}/K_m)[\mathrm{S}]$, first order in substrate. The slope
+$V_{\max}/K_m$ equals $(k_{cat}/K_m)[\mathrm{E}]_T$.
+\item $[\mathrm{S}]=K_m$: $v_0=V_{\max}/2$ exactly. This is the operational definition
+of $K_m$.
+\item $[\mathrm{S}]\gg K_m$: $v_0\approx V_{\max}$, zero order in substrate. The enzyme
+is saturated and adding more substrate does nothing.
+\end{itemize}
+\nr{f08-kinetics-mm-conditions}{Conditions for the Michaelis-Menten equation to hold}
+Conditions: single substrate, one binding site per active site, no cooperativity,
+initial-rate measurement with $[\mathrm{P}]\approx 0$, no product inhibition,
+$[\mathrm{S}]\gg[\mathrm{E}]_T$, constant pH and temperature, and steady state
+established.
+\end{keybox}
+
+\begin{expbox}[title={EXPERIMENT: Michaelis and Menten on invertase, 1913}]
+\nr{f08-kinetics-exp-michaelis-menten}{Michaelis and Menten 1913}
+\ttitle{Design.} Leonor Michaelis and Maud Menten followed the hydrolysis of sucrose to
+glucose plus fructose by yeast invertase, using the change in optical rotation. The
+methodological advances were what mattered: they buffered the reaction, which fixed the
+pH that Victor Henri in $1903$ had not controlled; they measured only the initial rate,
+which removed product inhibition by fructose; and they varied $[\mathrm{S}]$ over
+about a $100$-fold range.
+
+\ttitle{Result.} $v_0$ against $[\mathrm{S}]$ was a rectangular hyperbola. Fitting gave
+a half-saturation constant of about $0.017\ \mathrm{M}$ sucrose.
+
+\ttitle{What it established.} That the enzyme forms a discrete, saturable complex with
+its substrate, and that one constant with units of concentration plus one limiting
+velocity describe the whole curve. Henri had written the equation first, in $1903$, but
+without buffering or initial-rate measurement he could not test it; the equation is
+occasionally called Henri-Michaelis-Menten for that reason.
+\end{expbox}
+
+\begin{expbox}[title={EXPERIMENT: Briggs and Haldane, 1925, and why the assumption changed}]
+\nr{f08-kinetics-exp-briggs-haldane}{Briggs-Haldane steady state, 1925}
+\ttitle{Design.} George Briggs and J.B.S. Haldane re-derived the same hyperbola without
+assuming that \ce{ES} is in equilibrium with \ce{E + S}. Michaelis and Menten had
+required $k_2\ll k_{-1}$, giving $K_m=k_{-1}/k_1=K_S$, a true dissociation constant.
+Briggs and Haldane assumed only $d[\mathrm{ES}]/dt=0$.
+
+\ttitle{Result.} The identical equation appears, but with
+$K_m=(k_{-1}+k_2)/k_1$.
+
+\ttitle{What it established.} That the hyperbola is compatible with any relative size
+of $k_2$ and $k_{-1}$, so fitting a hyperbola tells you nothing about the mechanism
+beyond saturation. It also established that $K_m\geq K_S$ always, with equality only
+when $k_2\ll k_{-1}$. For acetylcholinesterase, where $k_2$ is very large,
+$K_m$ exceeds $K_S$ substantially.
+\end{expbox}
+
+\begin{warnbox}[title={TRAP: treating $K_m$ as a dissociation constant}]
+\nr{f08-kinetics-trap-km-not-kd}{$K_m$ is not always $K_d$}
+The wrong belief: $K_m$ measures how tightly the enzyme binds its substrate, so a low
+$K_m$ always means tight binding. The correction: $K_m=(k_{-1}+k_2)/k_1$ contains the
+catalytic constant. Only when $k_2\ll k_{-1}$ does $K_m$ collapse to
+$K_S=k_{-1}/k_1=K_d$. When $k_2\gg k_{-1}$ the enzyme converts substrate faster than
+it releases it, $K_m\approx k_2/k_1$, and $K_m$ is then a measure of catalytic
+throughput, not affinity. Safe phrasing on an exam: $K_m$ is the substrate
+concentration giving half-maximal velocity, and it is an inverse measure of
+\emph{apparent} affinity.
+\end{warnbox}
+
+\begin{tabular}{@{}lp{3.0cm}p{4.2cm}@{}}
+\toprule
+\textbf{Treatment} & \textbf{Assumption} & \textbf{Meaning of the constant}\\
+\midrule
+Henri 1903 & Rapid equilibrium, unbuffered & Hyperbola written but untested\\
+Michaelis-Menten 1913 & $k_2\ll k_{-1}$ & $K_S=k_{-1}/k_1$, a true $K_d$\\
+Briggs-Haldane 1925 & $d[\mathrm{ES}]/dt=0$ & $K_m=(k_{-1}+k_2)/k_1\geq K_S$\\
+\bottomrule
+\end{tabular}
+
+\begin{obsbox}[title={WORTH NOTICING: the same hyperbola appears in four other places}]
+\nr{f08-kinetics-hyperbola-analogues}{Hyperbolic saturation analogues}
+The form $y=y_{\max}x/(K+x)$ is not special to enzymes. Myoglobin oxygen binding uses
+$Y=p\mathrm{O_2}/(P_{50}+p\mathrm{O_2})$ with $P_{50}\approx 2.8\ \mathrm{mmHg}$.
+Carrier-mediated facilitated diffusion of glucose by GLUT1 uses
+$K_m\approx 1.5\ \mathrm{mM}$ with the same algebra. Receptor occupancy uses $K_d$.
+Nutrient-limited microbial growth uses the Monod equation
+$\mu=\mu_{\max}S/(K_S+S)$, and predator functional response type II uses Holling's
+disc equation. Recognising the shared algebra means one derivation covers all five.
+\end{obsbox}
+
+\section{$K_m$, $V_{\max}$, $k_{cat}$, catalytic efficiency, and turnover number, with worked calculations and units}
+
+Four numbers describe a Michaelis-Menten enzyme, and confusing them is the most common
+source of lost marks on this topic. Two are properties of the enzyme alone
+($k_{cat}$ and $k_{cat}/K_m$), one depends on how much enzyme you happened to put in
+the tube ($V_{\max}$), and one is a concentration ($K_m$).
+
+\begin{defbox}[title={DEFINITIONS: the four kinetic parameters}]
+\nr{f08-kinetics-km-def}{Michaelis constant $K_m$}
+\tm{$K_m$} is the substrate concentration at which $v_0=V_{\max}/2$. Units of
+concentration, usually $\mathrm{mM}$ or $\mu\mathrm{M}$. Independent of
+$[\mathrm{E}]_T$.
+\nr{f08-kinetics-vmax-def}{Maximum velocity $V_{\max}$}
+\tm{$V_{\max}$} is the velocity at saturating substrate, $V_{\max}=k_{cat}[\mathrm{E}]_T$.
+Units of $\mathrm{M\,s^{-1}}$ or $\mu\mathrm{mol\,min^{-1}}$. Directly proportional to
+enzyme concentration, so it is not a constant of the enzyme.
+\nr{f08-kinetics-kcat-def}{Catalytic constant $k_{cat}$}
+\tm{$k_{cat}$}, the \tm{turnover number}, is the number of substrate molecules
+converted per active site per second at saturation. Units $\mathrm{s^{-1}}$.
+$k_{cat}=V_{\max}/[\mathrm{E}]_T$. For the minimal mechanism $k_{cat}=k_2$; for longer
+mechanisms it is the composite constant of the slowest step after binding.
+\nr{f08-kinetics-efficiency-def}{Catalytic efficiency $k_{cat}/K_m$}
+\tm{Catalytic efficiency} or the \tm{specificity constant} is $k_{cat}/K_m$, units
+$\mathrm{M^{-1}\,s^{-1}}$. It is the apparent second-order rate constant for the
+reaction of free enzyme with free substrate at low $[\mathrm{S}]$, and it is the
+number that decides which of two competing substrates an enzyme prefers.
+\end{defbox}
+
+\begin{keybox}[title={MEMORIZE: the conversions between the four parameters}]
+\nr{f08-kinetics-parameter-conversions}{Conversions among kinetic parameters}
+\[
+V_{\max}=k_{cat}[\mathrm{E}]_T,\qquad
+k_{cat}=\frac{V_{\max}}{[\mathrm{E}]_T},\qquad
+\frac{V_{\max}}{K_m}=\frac{k_{cat}}{K_m}[\mathrm{E}]_T
+\]
+\nr{f08-kinetics-subunit-correction}{Active-site correction to $k_{cat}$}
+If the enzyme has $n$ active sites per molecule, $[\mathrm{E}]_T$ in these equations
+means the concentration of \emph{active sites}, so divide $V_{\max}$ by
+$n\times[\text{protein}]$. Aspartate transcarbamoylase has six catalytic sites,
+haemoglobin four, and glyceraldehyde-3-phosphate dehydrogenase four; forgetting the
+factor gives a $k_{cat}$ wrong by exactly that factor.
+\end{keybox}
+
+\begin{calcbox}[title={WORKED: $k_{cat}$ and catalytic efficiency from an assay}]
+\nr{f08-kinetics-calc-kcat}{Worked $k_{cat}$ and efficiency}
+A purified monomeric dehydrogenase is assayed in $1.0\ \mathrm{mL}$ at $37\degc$. The
+enzyme is at $5.0\ \mathrm{nM}$. At saturating substrate the assay produces
+$15\ \mathrm{nmol}$ of product per minute. $K_m$ was measured as $0.40\ \mathrm{mM}$.
+
+\ttitle{Moles of enzyme in the cuvette.}
+\[
+n_E=(5.0\times10^{-9}\ \mathrm{mol\,L^{-1}})\times(1.0\times10^{-3}\ \mathrm{L})
+=5.0\times10^{-12}\ \mathrm{mol}=5.0\ \mathrm{pmol}
+\]
+
+\ttitle{$k_{cat}$.} Convert the rate to pmol per minute:
+$15\ \mathrm{nmol\,min^{-1}}=1.5\times10^{4}\ \mathrm{pmol\,min^{-1}}$.
+\[
+k_{cat}=\frac{1.5\times10^{4}\ \mathrm{pmol\,min^{-1}}}{5.0\ \mathrm{pmol}}
+=3.0\times10^{3}\ \mathrm{min^{-1}}
+=\frac{3.0\times10^{3}}{60}=50\ \mathrm{s^{-1}}
+\]
+
+\ttitle{$V_{\max}$ as a concentration rate.}
+$15\ \mathrm{nmol\,min^{-1}}$ in $1.0\ \mathrm{mL}$ is
+$15\ \mu\mathrm{mol\,L^{-1}\,min^{-1}}=0.25\ \mu\mathrm{M\,s^{-1}}$.
+
+\ttitle{Catalytic efficiency.}
+\[
+\frac{k_{cat}}{K_m}=\frac{50\ \mathrm{s^{-1}}}{4.0\times10^{-4}\ \mathrm{M}}
+=1.25\times10^{5}\ \mathrm{M^{-1}\,s^{-1}}
+\]
+
+\ttitle{Check.} Cross-check $V_{\max}=k_{cat}[\mathrm{E}]_T
+=50\ \mathrm{s^{-1}}\times5.0\times10^{-9}\ \mathrm{M}
+=2.5\times10^{-7}\ \mathrm{M\,s^{-1}}=0.25\ \mu\mathrm{M\,s^{-1}}$, which matches the
+independently computed value. The efficiency is $10^{4}$-fold below the diffusion
+limit of $\approx10^{9}\ \mathrm{M^{-1}\,s^{-1}}$, so this is an ordinary, not a
+perfected, enzyme. \tm{$\surd$}
+\end{calcbox}
+
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\textbf{Enzyme} & \textbf{Substrate} & \textbf{$K_m$ (mM)} & \textbf{$k_{cat}$ (s$^{-1}$)} & \textbf{$k_{cat}/K_m$}\\
+\midrule
+Catalase & \ce{H2O2} & $25$ & $4\times10^{7}$ & $1.6\times10^{9}$\\
+Carbonic anhydrase II & \ce{CO2} & $12$ & $1\times10^{6}$ & $8.3\times10^{7}$\\
+Acetylcholinesterase & ACh & $0.095$ & $1.4\times10^{4}$ & $1.5\times10^{8}$\\
+Fumarase & fumarate & $0.005$ & $800$ & $1.6\times10^{8}$\\
+Triose-P isomerase & GAP & $0.47$ & $4.3\times10^{3}$ & $9.1\times10^{6}$\\
+Superoxide dismutase & \ce{O2^-} & $0.36$ & $1\times10^{6}$ & $2.8\times10^{9}$\\
+Chymotrypsin & Ac-Phe-OEt & $15$ & $0.14$ & $9.3$\\
+Hexokinase & glucose & $0.05$ & $200$ & $4\times10^{6}$\\
+Glucokinase & glucose & $10$ & $60$ & $6\times10^{3}$\\
+\bottomrule
+\end{tabular}
+
+Published values for these enzymes vary by up to a factor of five between textbooks,
+because they depend on pH, temperature, ionic strength and which isoform was used.
+Catalase $K_m$ for \ce{H2O2} is quoted anywhere from $25\ \mathrm{mM}$ to over
+$1\ \mathrm{M}$ because the enzyme is inactivated by its own substrate at high
+concentration; $k_{cat}$ is quoted from $1\times10^{7}$ to $4\times10^{7}\
+\mathrm{s^{-1}}$. Quote a value with the range and you cannot be marked wrong.
+
+\begin{thmbox}[title={PRINCIPLE: the diffusion limit and catalytic perfection}]
+\nr{f08-kinetics-diffusion-limit}{Diffusion limit on $k_{cat}/K_m$}
+A bimolecular encounter in water cannot happen faster than diffusion allows, which puts
+a ceiling of $10^{8}$ to $10^{9}\ \mathrm{M^{-1}\,s^{-1}}$ on $k_{cat}/K_m$ for a
+normal-sized substrate.
+\nr{f08-kinetics-catalytic-perfection}{Catalytic perfection}
+An enzyme whose $k_{cat}/K_m$ reaches that ceiling is \tm{catalytically perfect}: every
+encounter with substrate yields product, so no further improvement in the chemistry can
+increase the rate. Triose phosphate isomerase, fumarase, catalase, carbonic anhydrase
+and superoxide dismutase are the standard examples. Superoxide dismutase is reported
+at $2\times10^{9}$ to $7\times10^{9}\ \mathrm{M^{-1}\,s^{-1}}$, apparently above the
+limit, because electrostatic steering funnels the anionic substrate into the active
+site.
+\end{thmbox}
+
+\begin{warnbox}[title={TRAP: $V_{\max}$ quoted as a property of the enzyme}]
+\nr{f08-kinetics-trap-vmax-property}{$V_{\max}$ depends on enzyme amount}
+The wrong belief: enzyme A has a higher $V_{\max}$ than enzyme B, therefore A is the
+better catalyst. The correction: $V_{\max}=k_{cat}[\mathrm{E}]_T$, so doubling the
+enzyme doubles $V_{\max}$ while $k_{cat}$, $K_m$ and $k_{cat}/K_m$ are all unchanged.
+Comparisons between enzymes must use $k_{cat}$ or $k_{cat}/K_m$. A question that says
+"the amount of enzyme was doubled" expects you to say $V_{\max}$ doubles and $K_m$ is
+unchanged; the saturation curve rises but the half-saturation point stays put.
+\end{warnbox}
+
+\begin{warnbox}[title={TRAP: low $K_m$ equals better enzyme}]
+\nr{f08-kinetics-trap-low-km-better}{Low $K_m$ is not the same as better}
+The wrong belief: the enzyme with the lower $K_m$ is physiologically superior. The
+correction: a low $K_m$ means the enzyme is already near-saturated at physiological
+substrate concentration, so it runs flat out and cannot respond to a rise in
+substrate. Hexokinase, $K_m\approx 0.05\ \mathrm{mM}$, is saturated at the
+$4$ to $5\ \mathrm{mM}$ glucose of blood and keeps muscle supplied at all times.
+Glucokinase, $K_m\approx 10\ \mathrm{mM}$ with a sigmoidal response, is deliberately
+unsaturated so that hepatic glucose uptake rises steeply when portal glucose climbs
+from $5$ to $15\ \mathrm{mM}$ after a meal. Neither enzyme is better; they are tuned
+to different jobs. The same logic distinguishes cytosolic
+aldehyde dehydrogenase ($K_m\approx 30\ \mu\mathrm{M}$) from the mitochondrial ALDH2
+($K_m\approx 0.2\ \mu\mathrm{M}$).
+\end{warnbox}
+
+\begin{obsbox}[title={WORTH NOTICING: $K_m$ usually sits near physiological $[\mathrm{S}]$}]
+\nr{f08-kinetics-km-near-physiological}{$K_m$ tracks physiological substrate}
+For most enzymes $K_m$ lies within about an order of magnitude of the cellular
+concentration of the substrate. This is not a coincidence: at $[\mathrm{S}]\approx K_m$
+the enzyme runs at half speed, which is the point of maximum sensitivity, because
+$dv/d[\mathrm{S}]$ relative to $v$ is largest in the rising part of the hyperbola.
+An enzyme operating at $[\mathrm{S}]=10K_m$ would be a fixed-rate pump; one at
+$[\mathrm{S}]=0.01K_m$ would waste most of its capacity.
+\end{obsbox}
+
+\section{Reading kinetic parameters from a saturation curve, and from initial rate data}
+
+The direct hyperbolic plot is how kinetics is actually done today, because non-linear
+regression on the untransformed data is statistically correct. An exam still expects you
+to read parameters off a curve and off a table by hand, and the errors that this
+introduces are themselves examinable.
+
+\begin{tipbox}[title={TECHNIQUE: extracting $V_{\max}$ and $K_m$ from a saturation curve}]
+\nr{f08-kinetics-technique-read-curve}{Reading a saturation curve}
+Trigger: a graph of $v_0$ on the vertical axis against $[\mathrm{S}]$ on the horizontal,
+curving to a plateau.
+\begin{enumerate}
+\item Identify the horizontal asymptote. That value is $V_{\max}$. Check that the last
+two or three points differ by less than $5\%$; if the curve is still climbing you are
+reading a lower bound, not $V_{\max}$.
+\item Halve it. Draw a horizontal line at $V_{\max}/2$.
+\item Drop a vertical from where that line meets the curve. The $[\mathrm{S}]$ value is
+$K_m$, in whatever concentration units the axis carries.
+\item Confirm with the initial slope: the tangent at the origin has slope
+$V_{\max}/K_m$, so $K_m$ predicted from the slope should match.
+\end{enumerate}
+\end{tipbox}
+
+\begin{keybox}[title={MEMORIZE: the $81$-fold rule and the saturation table}]
+\nr{f08-kinetics-81-fold-rule}{Eighty-one-fold rule}
+Going from $10\%$ to $90\%$ of $V_{\max}$ requires an $81$-fold increase in
+$[\mathrm{S}]$, from $0.111K_m$ to $9K_m$. This is a property of every rectangular
+hyperbola and is the reason a saturation curve is so hard to saturate.
+\nr{f08-kinetics-fraction-table}{Fractional velocity at multiples of $K_m$}
+\[
+\frac{v_0}{V_{\max}}=\frac{[\mathrm{S}]/K_m}{1+[\mathrm{S}]/K_m}
+\]
+So $[\mathrm{S}]=K_m$ gives exactly $0.500$; $[\mathrm{S}]=10K_m$ gives $0.909$;
+$[\mathrm{S}]=100K_m$ gives $0.990$. To be within $1\%$ of $V_{\max}$ you need
+$[\mathrm{S}]=99K_m$, which is often experimentally impossible because of solubility.
+\end{keybox}
+
+\begin{tabular}{@{}llll@{}}
+\toprule
+$[\mathrm{S}]/K_m$ & $v_0/V_{\max}$ & $[\mathrm{S}]/K_m$ & $v_0/V_{\max}$\\
+\midrule
+$0.1$ & $0.091$ & $3$ & $0.750$\\
+$0.111$ & $0.100$ & $5$ & $0.833$\\
+$0.25$ & $0.200$ & $9$ & $0.900$\\
+$0.5$ & $0.333$ & $10$ & $0.909$\\
+$1$ & $0.500$ & $19$ & $0.950$\\
+$2$ & $0.667$ & $99$ & $0.990$\\
+\bottomrule
+\end{tabular}
+
+\begin{warnbox}[title={TRAP: eyeballing $V_{\max}$ off an unsaturated curve}]
+\nr{f08-kinetics-trap-vmax-eyeball}{Underestimating $V_{\max}$ by eye}
+The wrong belief: the highest measured velocity is close enough to $V_{\max}$. The
+correction: if the largest $[\mathrm{S}]$ used was only $3K_m$, the highest velocity is
+$0.75V_{\max}$, so $V_{\max}$ is underestimated by $25\%$ and $K_m$, read as the
+substrate giving half of that wrong ceiling, is underestimated too. Design assays to
+span $0.2K_m$ to $5K_m$ at minimum, with at least $6$ to $8$ substrate concentrations
+spaced geometrically, not arithmetically. If a graph in a question stops climbing
+suspiciously early, suspect substrate inhibition rather than saturation.
+\end{warnbox}
+
+\begin{calcbox}[title={WORKED: parameters read straight from an initial-rate table}]
+\nr{f08-kinetics-calc-read-table}{Worked reading of an initial-rate table}
+An enzyme assay at $30\degc$, pH $7.4$, gives these initial rates.
+
+\ttitle{Data.}
+$[\mathrm{S}]$ in $\mathrm{mM}$: $0.10$, $0.25$, $0.50$, $1.00$, $2.00$, $5.00$,
+$10.00$, $20.00$.
+$v_0$ in $\mu\mathrm{mol\,min^{-1}}$: $6.9$, $15.0$, $25.0$, $37.5$, $50.0$, $62.5$,
+$68.2$, $72.7$.
+
+\ttitle{Step 1, bound $V_{\max}$.} The last two rates differ by $6.6\%$, so the curve
+is still rising and $72.7$ is a lower bound. The pattern of the numbers suggests a
+ceiling near $75$.
+
+\ttitle{Step 2, test the guess.} If $V_{\max}=75.0$ and $K_m=1.00\ \mathrm{mM}$, then
+at $[\mathrm{S}]=1.00$, $v_0=75.0\times1.00/(1.00+1.00)=37.5$. Matches exactly.
+
+\ttitle{Step 3, verify at three more points.}
+\[
+[\mathrm{S}]=0.25:\ \frac{75.0\times0.25}{1.25}=15.0\quad\text{matches}
+\]
+\[
+[\mathrm{S}]=5.00:\ \frac{75.0\times5.00}{6.00}=62.5\quad\text{matches}
+\]
+\[
+[\mathrm{S}]=20.0:\ \frac{75.0\times20.0}{21.0}=71.4\quad\text{vs }72.7\text{ measured}
+\]
+
+\ttitle{Step 4, $K_m$ by the half-velocity route.} $V_{\max}/2=37.5$, and the table
+shows $v_0=37.5$ at $[\mathrm{S}]=1.00\ \mathrm{mM}$, so
+$K_m=1.00\ \mathrm{mM}$ directly.
+
+\ttitle{Check.} The initial slope should be $V_{\max}/K_m=75.0\
+\mu\mathrm{mol\,min^{-1}\,mM^{-1}}$. From the lowest point,
+$6.9/0.10=69$, which is $92\%$ of $75$; the shortfall is expected because
+$[\mathrm{S}]=0.1K_m$ is not quite in the linear region, where the predicted fraction
+is $0.091$ rather than $0.100$. Indeed $75.0\times0.091=6.8$, matching the measured
+$6.9$. \tm{$\surd$} The residual at $20\ \mathrm{mM}$ hints at a second, weaker
+activating site or simply $1.8\%$ measurement scatter.
+\end{calcbox}
+
+\begin{tipbox}[title={TECHNIQUE: making sure a rate is an initial rate}]
+\nr{f08-kinetics-technique-initial-rate}{Securing a true initial rate}
+Trigger: any progress curve, or any question that gives product formed after a fixed
+incubation.
+\begin{itemize}
+\item Take the tangent at $t=0$, not the chord from $0$ to the last point. The chord
+always underestimates.
+\item Keep total substrate depletion under $10\%$, and preferably under $5\%$. At
+$10\%$ depletion an enzyme running at $[\mathrm{S}]=K_m$ has already slowed by about
+$5\%$.
+\item Keep $[\mathrm{E}]_T$ at least $10^{3}$-fold below $[\mathrm{S}]$ so the steady
+state holds and free substrate equals added substrate.
+\item Watch for a lag from enzyme activation or from a coupled indicator reaction, and
+for a burst from a rapid first turnover.
+\item Confirm linearity by showing that $v_0$ is proportional to $[\mathrm{E}]_T$ over
+at least a fourfold range. If it is not, something other than the enzyme is limiting,
+such as oxygen supply or detector saturation.
+\end{itemize}
+\end{tipbox}
+
+\begin{tabular}{@{}p{3.1cm}p{3.6cm}p{3.6cm}@{}}
+\toprule
+\textbf{Artefact in a progress curve} & \textbf{Appearance} & \textbf{Cause and fix}\\
+\midrule
+Chord instead of tangent & $v_0$ too low, more so at low $[\mathrm{S}]$ & Sample earlier; use the first $5\%$ of turnover\\
+Lag phase & Curve concave up at the start & Coupled indicator, cofactor binding, or slow mixing; pre-incubate\\
+Burst then slowing & Steep first $100\ \mathrm{ms}$ & Rapid acylation before slow deacylation; needs stopped-flow\\
+Plateau too early & False low $V_{\max}$ & Substrate inhibition, product inhibition, or enzyme denaturation\\
+Non-proportional to $[\mathrm{E}]_T$ & Doubling enzyme gives $<2\times$ rate & Detector saturation or diffusion-limited supply\\
+\bottomrule
+\end{tabular}
+
+\begin{obsbox}[title={WORTH NOTICING: why non-linear fitting beat the linear plots}]
+\nr{f08-kinetics-nonlinear-preferred}{Non-linear regression on the hyperbola}
+Fitting $v_0=V_{\max}[\mathrm{S}]/(K_m+[\mathrm{S}])$ directly by least squares assumes
+that the error in $v_0$ is uniform, which is roughly true for a spectrophotometric
+assay. Every linear transformation in the next section redistributes that error and
+therefore gives a different, usually worse, estimate. The linear plots survive because
+they make the \emph{shape} of an inhibition effect visible at a glance, not because
+they give better numbers.
+\end{obsbox}

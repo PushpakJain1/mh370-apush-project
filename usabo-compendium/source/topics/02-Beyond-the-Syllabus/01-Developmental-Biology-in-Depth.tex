@@ -1,0 +1,35 @@
+\input{preamble}
+\input{partnames}
+\input{memomacros}
+\input{sheetstyle}
+\makeindex[title={Index of This Volume},columns=2,intoc]
+\begin{document}
+\begin{titlepage}\thispagestyle{empty}
+\vspace*{0.14\textheight}
+\noindent{\color{tierbeyond}\rule{\textwidth}{5pt}}\\[3pt]
+\noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[26pt]
+\noindent{\sffamily\bfseries\fontsize{11}{14}\selectfont\color{bionum}TIER TWO. BEYOND THE SYLLABUS}\\[12pt]
+\noindent\begin{minipage}{\textwidth}\raggedright
+{\sffamily\bfseries\fontsize{28}{32}\selectfont\color{bioink}%
+ \hyphenchar\font=-1\hyphenpenalty=10000\exhyphenpenalty=10000 Developmental Biology in Depth\par}\end{minipage}\\[16pt]
+\noindent{\color{biogreen}\rule{\textwidth}{1.4pt}}\\[10pt]
+\noindent\begin{minipage}{\textwidth}\raggedright
+{\fontsize{10.5}{14}\selectfont\color{biogreen}%
+Part one teaches the topic in the depth the Semifinal Exam and the IBO reach for. Part two is the
+bare memorization sheet for the same material. The index at the back covers both.\par}\end{minipage}
+\vfill
+\noindent{\color{bioline}\rule{\textwidth}{1pt}}\\[3pt]
+\noindent{\color{tierbeyond}\rule{\textwidth}{5pt}}
+\end{titlepage}
+\tableofcontents
+\clearpage
+\memtier{Part One. Learn It}
+\InputIfFileExists{sections/b01-devbio-1}{}{}
+\InputIfFileExists{sections/b01-devbio-2}{}{}
+\InputIfFileExists{sections/b01-devbio-3}{}{}
+\memtier{Part Two. Memorize It}
+\InputIfFileExists{memo/b01-devbio-1}{}{}
+\InputIfFileExists{memo/b01-devbio-2}{}{}
+\clearpage
+\printindex
+\end{document}

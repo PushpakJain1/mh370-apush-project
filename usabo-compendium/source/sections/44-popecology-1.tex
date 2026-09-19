@@ -1,0 +1,860 @@
+\parttitle[popecology]{Population and Community Ecology}{Populations, their growth and regulation, and every way species interact.}
+
+\section{The scope of ecology and its levels of organization}
+
+Ecology is the study of the distribution and abundance of organisms and of the
+interactions that determine them. The two nouns matter: \tm{distribution} is a
+question about space (where is the species, and where is it not), and
+\tm{abundance} is a question about number (how many, and why not more). Every
+question on the USABO ecology section reduces to one of those two, or to the
+mechanism linking them.
+
+\begin{defbox}[title={DEFINITIONS: the levels of ecological organization}]
+\nr{44-popecology-levels}{Levels of ecological organization}
+\begin{itemize}
+\item \tm{Organismal ecology} treats the single individual: its physiology,
+behaviour and morphology as adaptations to the abiotic environment. Subdivided
+into physiological, evolutionary and behavioural ecology.
+\item \tm{Population ecology} treats a group of conspecific individuals living in
+one area at one time, with the potential to interbreed. The state variable is
+$N$, the number of individuals.
+\item \tm{Community ecology} treats all populations of all species in an area and
+their interactions. The state variables are species richness $S$ and the
+interaction coefficients.
+\item \tm{Ecosystem ecology} adds the abiotic compartment and follows energy
+(J~m$^{-2}$~yr$^{-1}$) and matter (g~m$^{-2}$~yr$^{-1}$) through it.
+\item \tm{Landscape ecology} treats a mosaic of ecosystems, patch geometry and
+flows between patches, typically over $1$ to $10^4$~km$^2$.
+\item \tm{Global ecology} (the biosphere) treats the whole planet: the carbon
+cycle, ocean circulation, and climate feedbacks.
+\end{itemize}
+\end{defbox}
+
+\nr{44-popecology-population-def}{Population, biological definition}
+A population is not merely a set of individuals of one species. The operational
+definition requires (i) one species, (ii) one defined area, (iii) one time, and
+(iv) actual or potential gene exchange. A wolf pack in Yellowstone and a wolf
+pack in Alaska are not one population, because condition (iv) fails at any useful
+timescale even though (i) holds.
+
+\begin{thmbox}[title={PRINCIPLE: emergent properties at each level}]
+\nr{44-popecology-emergent}{Emergent properties of levels}
+Each level has properties undefined at the level below. An individual has an age,
+but only a population has an \tm{age structure}. An individual is born or dies,
+but only a population has a \tm{birth rate}. A population has a density, but only
+a community has a \tm{diversity}. The consequence for the exam: if a question
+asks for a rate per capita, it is a population question; if it asks for
+J~m$^{-2}$~yr$^{-1}$, it is an ecosystem question.
+\end{thmbox}
+
+\begin{tabular}{@{}lp{3.4cm}p{4.6cm}@{}}
+\toprule
+\textbf{Level} & \textbf{State variable} & \textbf{Characteristic question}\\
+\midrule
+Organism & Body mass, rate & How does it tolerate $-40\degc$?\\
+Population & $N$, $r$, $K$ & Why does $N$ stop at $500$?\\
+Community & $S$, $H'$, $\alpha_{ij}$ & Why do $12$ warblers coexist?\\
+Ecosystem & Energy, nutrient flux & Where do $2000$~kcal~m$^{-2}$ go?\\
+Landscape & Patch number, edge & Does a $50$~m corridor restore flow?\\
+Biosphere & Global pools & Why is \ce{CO2} at $425$~ppm?\\
+\bottomrule
+\end{tabular}
+
+\begin{obsbox}[title={WORTH NOTICING: the scales span twenty orders of magnitude}]
+\nr{44-popecology-scales}{Spatial and temporal scales in ecology}
+A bacterial population responds over $10^{-6}$~m and $20$~min. A forest stand
+responds over $10^{2}$~m and $10^{2}$~yr. The biosphere responds over $10^{7}$~m
+and $10^{4}$ to $10^{6}$~yr. Because the scales differ by roughly $10^{13}$ in
+space and $10^{10}$ in time, a process that is a constant at one scale is a
+variable at another: climate is a fixed parameter for a population study of one
+season and the dependent variable for a biosphere study.
+\end{obsbox}
+
+\begin{warnbox}[title={TRAP: ecology is not environmental science and not environmentalism}]
+\nr{44-popecology-vs-envsci}{Ecology against environmental science}
+The wrong belief is that ecology means protecting nature. Ecology is a
+descriptive and predictive natural science; it makes no value claims.
+\tm{Environmental science} is interdisciplinary and applied: it imports ecology,
+chemistry, geology, economics, law and policy to manage human impact, and it does
+take a normative position (pollution is bad). \tm{Environmentalism} is a social
+and political movement. On the exam, a stem asking "which practice should be
+adopted" is environmental science; a stem asking "what will $N$ do" is ecology.
+A further distinction: ecology includes systems with no human involvement at all,
+which environmental science by definition does not.
+\end{warnbox}
+
+\begin{tipbox}[title={TECHNIQUE: identify the level before doing any work}]
+Trigger: any ecology stem with numbers in it. Read the units first.
+\begin{itemize}
+\item Units of individuals per area $\rightarrow$ population, use $N$ models.
+\item Units of individuals per area per time $\rightarrow$ population rate.
+\item Dimensionless index between $0$ and $1$ (or $0$ and $\ln S$)
+$\rightarrow$ community diversity.
+\item Units of mass or energy per area per time $\rightarrow$ ecosystem
+productivity.
+\item Ratio of two areas or a species count against area $\rightarrow$ island
+biogeography or landscape.
+\end{itemize}
+Choosing the level chooses the equation, and almost all lost marks in this
+section are marks lost by applying an ecosystem formula to a population stem.
+\end{tipbox}
+
+\begin{keybox}[title={MEMORIZE: the abiotic and biotic factor split}]
+\nr{44-popecology-abiotic-biotic}{Abiotic against biotic factors}
+\tm{Abiotic} factors are non-living: temperature, water, light
+($\approx 1360$~W~m$^{-2}$ at the top of the atmosphere, $\approx 1000$~W~m$^{-2}$
+at noon at sea level), salinity ($35$~ppt in open ocean, $0.5$~ppt fresh),
+pH, soil texture, fire, wind, dissolved \ce{O2} ($\approx 8$--$10$~mg~L$^{-1}$
+in cool fresh water, under $2$~mg~L$^{-1}$ is hypoxic). \tm{Biotic} factors are
+living: competitors, predators, prey, parasites, mutualists, pathogens. The rule
+that matters: abiotic factors act mostly in a \tm{density independent} way, biotic
+factors mostly in a \tm{density dependent} way, and that difference drives the
+whole regulation debate.
+\end{keybox}
+
+\section{Population properties: density, dispersion, sex ratio and age structure}
+
+A population is described by a small set of measurable properties. Four are
+examinable in detail, and each has a distinct method of measurement.
+
+\begin{keybox}[title={MEMORIZE: density and its two flavours}]
+\nr{44-popecology-density}{Population density}
+\[
+D=\frac{N}{A}
+\]
+$N$ = number of individuals, $A$ = area (or volume, for plankton and soil fauna).
+Units: individuals~m$^{-2}$, ha$^{-1}$ or km$^{-2}$.
+\nr{44-popecology-crude-ecological}{Crude against ecological density}
+\tm{Crude density} uses total area. \tm{Ecological density} (specific density)
+uses only the habitable area. A lake of $100$~ha holding $4000$ trout gives a
+crude density of $40$~ha$^{-1}$; if only the $25$~ha littoral zone is usable, the
+ecological density is $160$~ha$^{-1}$, a fourfold difference. Ecological density
+is the biologically meaningful number and the one that correlates with
+competition.
+\end{keybox}
+
+\nr{44-popecology-density-ranges}{Typical density ranges}
+Densities span an enormous range and the exam likes order-of-magnitude checks:
+soil bacteria $10^{8}$--$10^{10}$~g$^{-1}$; soil nematodes $10^{6}$~m$^{-2}$;
+earthworms $100$--$500$~m$^{-2}$ in good pasture; small rodents
+$10$--$200$~ha$^{-1}$; white-tailed deer $4$--$20$~km$^{-2}$; African elephant
+$0.5$--$2$~km$^{-2}$; tiger $0.5$--$5$ per $100$~km$^{-2}$. Density scales roughly
+as $M^{-0.75}$ with body mass $M$, the mirror of the metabolic
+$\frac{3}{4}$~power law.
+
+\begin{defbox}[title={DEFINITIONS: the three dispersion patterns}]
+\nr{44-popecology-dispersion}{Dispersion patterns}
+\tm{Dispersion} (also called spacing or pattern) is the arrangement of
+individuals in space. Do not confuse it with \tm{dispersal}, which is movement.
+\begin{itemize}
+\item \tm{Clumped} (aggregated, contagious): individuals in patches. Caused by
+patchy resources, social behaviour, limited seed dispersal, or clonal growth.
+This is by far the commonest pattern in nature, quoted at $70$--$90\%$ of
+surveyed species.
+\item \tm{Uniform} (regular, even): individuals more evenly spaced than chance.
+Caused by antagonism: territoriality in birds, allelopathy in creosote bush,
+self-thinning in plantations, nesting gannets at $\approx 2$ nests~m$^{-2}$.
+\item \tm{Random}: position of one individual independent of all others. Requires
+a homogeneous environment and no interaction. Rare; the classic example is
+wind-dispersed forest spores and some clams on uniform mudflats.
+\end{itemize}
+\end{defbox}
+
+The pattern is diagnosed statistically, not by eye, and the statistic is the
+variance-to-mean ratio of counts in equal-sized quadrats. For a random pattern
+the counts follow a Poisson distribution, in which the variance equals the mean.
+
+\begin{calcbox}[title={WORKED: diagnosing dispersion from the variance-to-mean ratio}]
+\nr{44-popecology-variance-mean}{Variance-to-mean ratio (index of dispersion)}
+Ten $1$~m$^2$ quadrats give seedling counts $0,0,1,0,7,0,9,1,0,2$.
+\ttitle{Mean.} $\bar{x}=(0+0+1+0+7+0+9+1+0+2)/10=20/10=2.0$.
+\ttitle{Sum of squared deviations.} Deviations are $-2,-2,-1,-2,5,-2,7,-1,-2,0$;
+squares $4,4,1,4,25,4,49,1,4,0$, summing to $96$.
+\ttitle{Variance.} $s^2=96/(10-1)=10.67$.
+\ttitle{Index.} $s^2/\bar{x}=10.67/2.0=5.33$.
+\[
+\frac{s^2}{\bar{x}}=5.33\gg 1 \quad\Rightarrow\quad \text{clumped}
+\]
+\ttitle{Significance test.} $\chi^2=(n-1)s^2/\bar{x}=9\times 5.33=48.0$ on
+$9$~df; the $0.05$ critical value is $16.9$, so the departure from randomness is
+significant.
+\ttitle{Check.} Six of ten quadrats are empty while two hold $7$ and $9$; an
+empty-quadrat fraction of $0.60$ against the Poisson prediction
+$e^{-2}=0.135$ confirms aggregation. Decision rule:
+$s^2/\bar{x}\approx 1$ random, $>1$ clumped, $<1$ uniform. \tm{$\surd$}
+\end{calcbox}
+
+\begin{warnbox}[title={TRAP: clumped is the default, and scale changes the answer}]
+\nr{44-popecology-dispersion-trap}{Scale dependence of dispersion}
+Two errors. First, students answer "random" because it sounds like the null; in
+nature clumped is the commonest pattern and random is the rarest. Second, and more
+subtle, dispersion is scale dependent: the same forest sampled with $1$~m$^2$
+quadrats may look clumped (trees in groves), with $100$~m$^2$ quadrats may look
+random, and with $1$~cm$^2$ quadrats looks uniform because two stems cannot
+occupy the same point. If a question changes quadrat size and asks why the
+conclusion changed, scale dependence is the answer.
+\end{warnbox}
+
+\begin{defbox}[title={DEFINITIONS: sex ratio and age structure}]
+\nr{44-popecology-sex-ratio}{Sex ratio}
+\tm{Sex ratio} is conventionally males per $100$ females, or the proportion male.
+\tm{Primary} sex ratio is at conception, \tm{secondary} at birth, \tm{tertiary}
+at maturity. In humans the secondary ratio is $\approx 105$ males per $100$
+females ($1.05$), the tertiary ratio falls below $1.00$ by age $50$ and to
+$\approx 0.45$ at age $85$ because male mortality is higher at every age.
+Fisher's principle predicts a $1{:}1$ investment ratio at equilibrium; deviations
+signal unequal cost or local mate competition.
+\nr{44-popecology-operational-sex-ratio}{Operational sex ratio}
+The \tm{operational sex ratio} counts only sexually receptive adults and is the
+number that predicts the intensity of sexual selection; in elephant seals it can
+exceed $1{:}40$ in effective terms because one bull monopolizes $40$ or more cows.
+\nr{44-popecology-age-structure}{Age structure}
+\tm{Age structure} is the proportion of the population in each age class, split
+into \tm{pre-reproductive}, \tm{reproductive} and \tm{post-reproductive} classes.
+It is displayed as an \tm{age pyramid} with age on the vertical axis and the two
+sexes back to back.
+\end{defbox}
+
+\begin{tabular}{@{}lp{3.0cm}p{4.4cm}@{}}
+\toprule
+\textbf{Pyramid shape} & \textbf{Growth} & \textbf{Signature and example}\\
+\midrule
+Broad triangle & Rapid growth & Wide pre-reproductive base, $>40\%$ under $15$; Niger, Afghanistan\\
+Bell or dome & Slow or stable & Even classes, $15$--$20\%$ under $15$; USA, France\\
+Urn or inverted & Declining & Narrow base, $>25\%$ over $65$; Japan, Italy, Germany\\
+\bottomrule
+\end{tabular}
+
+\begin{obsbox}[title={WORTH NOTICING: momentum hidden in the pyramid}]
+\nr{44-popecology-momentum}{Population momentum}
+A population whose total fertility rate falls to the replacement value of
+$2.1$ today keeps growing for $40$ to $70$ years, because the broad
+pre-reproductive base has yet to pass through the reproductive classes. This is
+\tm{population momentum}, and it is why China's population continued to rise for
+decades after fertility fell below $2.1$ around $1992$. The exam version: a
+stable age structure is a consequence of constant vital rates, not a cause, and
+it takes roughly one generation time to establish.
+\end{obsbox}
+
+\begin{tipbox}[title={TECHNIQUE: matching the property to the method}]
+For each property, know the one method that measures it.
+\begin{itemize}
+\item Density of sessile organisms: quadrat counts, direct.
+\item Density of mobile animals: mark-recapture, or transect with a detection
+correction.
+\item Density of secretive species: indirect indices (pellet counts, tracks,
+calls, camera-trap rates, eDNA), which give relative not absolute density.
+\item Dispersion: variance-to-mean ratio, or nearest-neighbour distance.
+\item Sex ratio: sexed captures or harvest records, corrected for
+sex-biased catchability.
+\item Age structure: growth rings in scales, otoliths, teeth or horns; tooth wear
+in ungulates; skull suture closure; or mark-recapture of known-age cohorts.
+\end{itemize}
+\end{tipbox}
+
+\section{Sampling methods: quadrats, transects, mark-recapture and the Lincoln index}
+
+You almost never count every individual. A \tm{total count} (census) is possible
+only for large conspicuous organisms in small areas: nesting colonies from aerial
+photographs, elephants from the air, trees over $10$~cm diameter in a plot. Every
+other estimate is a sample, and the exam tests whether you know what each method
+assumes.
+
+\begin{defbox}[title={DEFINITIONS: the plot and line methods}]
+\nr{44-popecology-quadrat}{Quadrat sampling}
+A \tm{quadrat} is a bounded sample plot, usually square, placed at random or on a
+grid. Count or estimate cover inside, then scale up:
+$\hat{N}=\bar{x}\times(A_{\text{total}}/a_{\text{quadrat}})$. Quadrat size is
+chosen so that most quadrats contain some individuals but few contain very many:
+$0.25$~m$^2$ for grassland herbs, $1$~m$^2$ for tall herbs, $4$--$25$~m$^2$ for
+shrubs, $100$--$1000$~m$^2$ for trees.
+\nr{44-popecology-transect}{Transects}
+A \tm{line transect} records every individual touching a line; a \tm{belt
+transect} is a strip of fixed width (commonly $0.5$--$2$~m) treated as a series
+of contiguous quadrats; a \tm{point transect} takes records at fixed intervals
+along the line. Transects are the method of choice when the variable of interest
+changes along a gradient (shore height, altitude, distance from a pollution
+source) because they capture \tm{zonation} that random quadrats would average
+away.
+\nr{44-popecology-cover-frequency}{Cover, frequency, abundance}
+\tm{Percentage cover} is the fraction of ground the vertical projection of a
+species covers, and may total over $100\%$ where canopies overlap.
+\tm{Frequency} is the percentage of quadrats in which a species occurs, and is
+strongly quadrat-size dependent. \tm{Density} is counts per area and needs
+countable individuals, so it fails for clonal grasses.
+\end{defbox}
+
+\begin{tabular}{@{}lp{3.2cm}p{4.4cm}@{}}
+\toprule
+\textbf{Method} & \textbf{Best for} & \textbf{Main limitation}\\
+\midrule
+Random quadrats & Sessile, evenly spread & Misses gradients; many needed if clumped\\
+Belt transect & Zonation on a gradient & Not random, so no simple variance\\
+Line intercept & Cover of shrubs, corals & Poor for small sparse species\\
+Mark-recapture & Mobile animals & Needs $4$ strong assumptions\\
+Removal trapping & Small mammals, fish & Destructive; assumes constant effort\\
+Indices (pellets, calls) & Rare or shy species & Relative only, needs calibration\\
+\bottomrule
+\end{tabular}
+
+\begin{keybox}[title={MEMORIZE: the Lincoln-Petersen index and its relatives}]
+\nr{44-popecology-lincoln}{Lincoln-Petersen index}
+Mark $M$ individuals, release, allow mixing, then take a second sample of $n$
+individuals of which $m$ are marked. Assuming the marked fraction in the sample
+equals the marked fraction in the population,
+\[
+\frac{M}{\hat{N}}=\frac{m}{n}\qquad\Longrightarrow\qquad
+\hat{N}=\frac{Mn}{m}
+\]
+\nr{44-popecology-chapman}{Chapman estimator}
+The Lincoln index is biased upward for small samples and undefined when $m=0$.
+The bias-corrected \tm{Chapman estimator} is preferred whenever $m<10$:
+\[
+\hat{N}_{C}=\frac{(M+1)(n+1)}{m+1}-1
+\]
+\nr{44-popecology-lincoln-se}{Standard error of the Lincoln estimate}
+\[
+\mathrm{SE}(\hat{N})\approx\sqrt{\frac{M^2 n (n-m)}{m^3}}
+\]
+and the $95\%$ interval is $\hat{N}\pm 1.96\,\mathrm{SE}$.
+\nr{44-popecology-schnabel}{Schnabel method}
+For $k>2$ sampling occasions,
+$\hat{N}=\sum(C_t M_t)/\sum R_t$ where $C_t$ is the catch, $M_t$ the marked
+animals at large and $R_t$ the recaptures on occasion $t$. It is far more precise
+because it pools information.
+\end{keybox}
+
+\begin{calcbox}[title={WORKED: mark-recapture of a beetle population}]
+A researcher traps $120$ ground beetles, marks each with a dot of enamel on the
+elytra, and releases them. Four days later a second trapping session yields $150$
+beetles, of which $18$ carry marks.
+\ttitle{Lincoln estimate.}
+\[
+\hat{N}=\frac{Mn}{m}=\frac{120\times 150}{18}=\frac{18000}{18}=1000
+\]
+\ttitle{Chapman estimate.}
+\[
+\hat{N}_C=\frac{(121)(151)}{19}-1=\frac{18271}{19}-1=961.6-1=960.6\approx 961
+\]
+\ttitle{Standard error.}
+\[
+\mathrm{SE}=\sqrt{\frac{120^2\times 150\times(150-18)}{18^3}}
+=\sqrt{\frac{14400\times150\times132}{5832}}
+\]
+$14400\times150=2\,160\,000$; $\times 132=285\,120\,000$; divided by $5832$ gives
+$48\,888$; the square root is $221$.
+\ttitle{Interval.} $1000\pm 1.96\times 221 = 1000\pm 433$, so roughly
+$570$ to $1430$. The estimate is imprecise because only $18$ recaptures were
+obtained.
+\ttitle{Density.} If the trapping grid covered $0.50$~ha, the density is
+$1000/0.50=2000$~beetles~ha$^{-1}$, i.e. $0.2$~m$^{-2}$.
+\ttitle{Check.} The marked fraction of the second sample is
+$18/150=0.12$, and $120/1000=0.12$ as well, so the proportions match by
+construction. The Chapman value is slightly lower than the Lincoln value, which
+is the expected direction of the bias correction. \tm{$\surd$}
+\end{calcbox}
+
+\begin{warnbox}[title={TRAP: the four assumptions of mark-recapture}]
+\nr{44-popecology-mr-assumptions}{Assumptions of mark-recapture}
+The wrong belief is that $\hat{N}=Mn/m$ is a measurement. It is a model estimate
+resting on four assumptions, each with a predictable direction of error.
+\begin{itemize}
+\item \tm{Closed population}: no birth, death, immigration or emigration between
+samples. Any dilution of marks by births or immigrants inflates $\hat{N}$.
+\item \tm{Equal catchability}: marked and unmarked animals equally likely to be
+caught. If marking makes animals \tm{trap-shy}, $m$ falls and $\hat{N}$ is
+overestimated; if it makes them \tm{trap-happy} (bait learning), $m$ rises and
+$\hat{N}$ is underestimated.
+\item \tm{Marks retained and readable}: lost marks reduce $m$ and inflate
+$\hat{N}$.
+\item \tm{Complete mixing}: enough time for marked animals to redistribute, but
+not so long that assumption one fails. This is the tension that sets the
+interval between samples.
+\end{itemize}
+A fifth practical rule: the mark must not raise mortality or predation risk, so
+paint on a moth's wing or a collar on a bird must be small relative to body mass
+(under $3$--$5\%$ is the usual ethical ceiling).
+\end{warnbox}
+
+\begin{expbox}[title={EXPERIMENT: Petersen's plaice, 1896, and Lincoln's ducks, 1930}]
+\nr{44-popecology-petersen-lincoln}{Origin of the mark-recapture estimator}
+C.~G.~J.~Petersen tagged plaice in the Limfjord with numbered bone buttons and
+used the recovery ratio in the commercial catch to estimate stock size and
+migration; this is the first quantitative use of the ratio estimator.
+F.~C.~Lincoln in $1930$ applied the same arithmetic at continental scale to North
+American waterfowl, using the ratio of returned leg bands to hunter-shot birds to
+estimate the total duck population, which is why the estimator carries his name in
+North American texts and Petersen's in European ones. What the work established:
+a single ratio, applied to a marked subsample, converts a catch into a population
+size, provided the marked and unmarked animals are mixed and equally vulnerable.
+Both authors noted the equal-catchability problem, which is still the main
+weakness a century later.
+\end{expbox}
+
+\begin{tipbox}[title={TECHNIQUE: reading a mark-recapture stem for the trick}]
+Trigger: numbers $M$, $n$, $m$ appear. Before computing, scan for the sabotage.
+\begin{itemize}
+\item "Two weeks later" in a species that breeds weekly $\rightarrow$ closure
+violated, estimate too high.
+\item "Marked with a bright tag" and a visual predator present $\rightarrow$
+differential mortality, estimate too high.
+\item "Trapped at the same baited stations" $\rightarrow$ trap-happy, estimate too
+low.
+\item "Marks faded" $\rightarrow$ $m$ too low, estimate too high.
+\item $m$ small (under $10$) $\rightarrow$ use Chapman, and expect a wide
+interval.
+\end{itemize}
+\end{tipbox}
+
+\section{Life tables, survivorship curves and fecundity schedules}
+
+A life table is an age-specific accounting of mortality and reproduction. It
+turns a population from a single number $N$ into a schedule, and from the
+schedule you can compute every growth parameter.
+
+\begin{keybox}[title={MEMORIZE: the life table columns}]
+\nr{44-popecology-lifetable}{Life table notation}
+\begin{itemize}
+\item $x$ = age or age class (years, instars, stages).
+\item $n_x$ = number alive at the start of age $x$.
+\item $l_x=n_x/n_0$ = \tm{survivorship}, the proportion of the original cohort
+alive at age $x$. Always $l_0=1$.
+\item $d_x=n_x-n_{x+1}$ = number dying during interval $x$.
+\item $q_x=d_x/n_x$ = \tm{age-specific mortality rate}, the probability of dying
+during $x$ given survival to $x$. This is the column that reveals the risky ages.
+\item $p_x=1-q_x$ = age-specific survival probability.
+\item $e_x$ = \tm{life expectancy} remaining at age $x$, computed as
+$e_x=\sum_{y\ge x}L_y/n_x$ with $L_y=(n_y+n_{y+1})/2$.
+\item $m_x$ (or $b_x$) = \tm{fecundity}, mean number of female offspring per
+surviving female of age $x$. The fecundity schedule is the list of $m_x$.
+\end{itemize}
+\end{keybox}
+
+\begin{defbox}[title={DEFINITIONS: cohort, static and segment life tables}]
+\nr{44-popecology-cohort-static}{Cohort against static life tables}
+A \tm{cohort} (horizontal, dynamic) life table follows a single group born at the
+same time until all are dead. It gives the true $l_x$ but requires a study longer
+than the lifespan, so it is feasible for annual plants, insects and barnacles and
+impractical for oaks or elephants.
+A \tm{static} (vertical, time-specific) life table takes a snapshot of the age
+distribution of the living population, or a sample of ages at death, and infers
+$l_x$ from it. It is quick but assumes the population has a \tm{stable age
+distribution} and constant vital rates. If those fail, the table is an artefact
+of past good and bad years.
+A \tm{segment} life table follows several cohorts over a few age classes each and
+splices the results.
+\end{defbox}
+
+\begin{calcbox}[title={WORKED: completing a life table and computing $R_0$}]
+\nr{44-popecology-R0}{Net reproductive rate $R_0$}
+A cohort of $n_0=500$ annual plants gives the following.
+
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+$x$ & $n_x$ & $l_x$ & $d_x$ & $q_x$ & $m_x$\\
+\midrule
+0 & 500 & 1.000 & 400 & 0.800 & 0\\
+1 & 100 & 0.200 & 60 & 0.600 & 2.0\\
+2 & 40 & 0.080 & 30 & 0.750 & 5.0\\
+3 & 10 & 0.020 & 10 & 1.000 & 8.0\\
+4 & 0 & 0.000 & --- & --- & ---\\
+\bottomrule
+\end{tabular}
+
+\ttitle{Column arithmetic.} $l_1=100/500=0.200$; $d_0=500-100=400$;
+$q_0=400/500=0.800$. Note $q_2=30/40=0.750$ exceeds $q_1=0.600$, so mortality
+rises again after age $1$ even though fewer individuals die in absolute terms.
+\ttitle{Net reproductive rate.}
+\[
+R_0=\sum_x l_x m_x = (1.000)(0)+(0.200)(2.0)+(0.080)(5.0)+(0.020)(8.0)
+\]
+$=0+0.400+0.400+0.160=0.960$.
+\ttitle{Generation time.}
+\[
+T=\frac{\sum x\, l_x m_x}{\sum l_x m_x}
+=\frac{(1)(0.400)+(2)(0.400)+(3)(0.160)}{0.960}
+=\frac{0.400+0.800+0.480}{0.960}=\frac{1.680}{0.960}=1.75\ \text{yr}
+\]
+\ttitle{Intrinsic rate of increase, approximated.}
+\[
+r\approx\frac{\ln R_0}{T}=\frac{\ln 0.960}{1.75}=\frac{-0.0408}{1.75}
+=-0.0233\ \mathrm{yr^{-1}}
+\]
+\ttitle{Check.} $R_0=0.96<1$ means each female is replaced by $0.96$ daughters,
+so the population must shrink, and indeed $r<0$. The two results agree in sign,
+which is the check to run every time: $R_0>1\Leftrightarrow r>0$;
+$R_0=1\Leftrightarrow r=0$; $R_0<1\Leftrightarrow r<0$. The decline is about
+$2.3\%$ per year, so the population halves in
+$\ln 2/0.0233\approx 30$~yr. \tm{$\surd$}
+\end{calcbox}
+
+\begin{thmbox}[title={PRINCIPLE: the three survivorship curves}]
+\nr{44-popecology-survivorship}{Survivorship curve types}
+Plot $\log_{10} l_x$ (or $\ln l_x$) against age, conventionally starting from
+$1000$ survivors.
+\begin{itemize}
+\item \tm{Type I} (convex): low juvenile mortality, mortality concentrated in old
+age. Large mammals, humans, elephants. Few, large, well-provisioned offspring;
+human $l_x$ stays above $0.9$ to age $50$ in a developed country.
+\item \tm{Type II} (straight on a log axis): constant $q_x$, so a constant
+\emph{probability} of death at all ages. Hydra, many birds after fledging,
+squirrels, some lizards, and annual plants in the adult phase.
+\item \tm{Type III} (concave): massive early mortality then low adult mortality.
+Oysters, most marine invertebrates, oaks, most fish. An oyster releasing
+$10^{8}$ eggs may see $l_x$ fall below $10^{-6}$ within weeks.
+\end{itemize}
+A straight line on a log survivorship plot is the diagnostic of Type II because
+$\log l_x=\log l_0 - kx$ corresponds to $l_x=e^{-kx}$, a constant hazard.
+\end{thmbox}
+
+\begin{warnbox}[title={TRAP: survivorship curves need a logarithmic axis}]
+\nr{44-popecology-survivorship-trap}{Log axis on survivorship curves}
+The wrong belief is that Type II is a straight line on any axis. Plot $l_x$ on a
+linear axis and an exponential decay is a curve, so a genuine Type II population
+looks Type III. Only on a log axis does constant proportional mortality become a
+straight line. Two further traps: (i) the survivorship curve is not the age
+pyramid, since one is a cohort's fate through time and the other is a snapshot of
+the living; (ii) most real species are intermediate, and many switch type with
+age, for example a plant with Type III seedlings and Type I adults.
+\end{warnbox}
+
+\begin{expbox}[title={EXPERIMENT: Murie's Dall sheep skulls, 1944, and Deevey's reanalysis}]
+\nr{44-popecology-dall-sheep}{Dall mountain sheep life table}
+Adolph Murie collected $608$ skulls of \sn{Ovis dalli} in Denali and aged each
+from horn annuli; E.~S.~Deevey converted the age-at-death distribution into a
+static life table in $1947$. The result: heavy mortality in the first year
+($q_0\approx 0.20$), a long low-mortality plateau from ages $2$ to $8$ with
+$q_x$ near $0.03$--$0.06$, and a sharp rise after age $9$, with almost none
+surviving past $14$. What it established: (i) a sample of skulls, which is far
+easier to obtain than a followed cohort, can yield a life table, provided the
+population is stationary and skulls of all ages are equally likely to be found;
+(ii) wild large mammals show a broadly Type I curve, refuting the older view that
+wild animals die at a constant rate; (iii) wolf predation fell disproportionately
+on lambs and on sheep past age $9$, the same classes with high $q_x$, which is
+evidence that predation removed animals already near death.
+\end{expbox}
+
+\begin{obsbox}[title={WORTH NOTICING: fecundity and survivorship trade off}]
+\nr{44-popecology-fecundity-tradeoff}{Fecundity-survivorship trade-off}
+Across species the product $l_x m_x$ summed over life is pinned near $1$ in any
+persistent population, which forces a trade-off: a species with
+$l_{\text{juvenile}}\approx 10^{-6}$ must produce $\approx 10^{6}$ eggs, and a
+species producing one offspring at a time must keep juvenile survival above
+$\approx 0.5$. An ocean sunfish laying $3\times 10^{8}$ eggs and an albatross
+laying one egg every two years both average $R_0\approx 1$ over the long run.
+The exam version: if a stem gives you a huge clutch, expect Type III, and if it
+gives you parental care, expect Type I.
+\end{obsbox}
+
+\section{Exponential growth: the model, $r$, and doubling time}
+
+When resources are unlimited and the environment is constant, each individual
+contributes the same per capita surplus, and the population grows in proportion
+to its own size. That is exponential growth, the ecological analogue of compound
+interest.
+
+\begin{keybox}[title={MEMORIZE: the exponential model in both forms}]
+\nr{44-popecology-exponential}{Exponential growth model}
+\ttitle{Continuous (overlapping generations).}
+\[
+\frac{dN}{dt}=(b-d)N=rN,\qquad N_t=N_0e^{rt}
+\]
+$N$ = population size, $t$ = time, $b$ = instantaneous per capita birth rate,
+$d$ = instantaneous per capita death rate, $r=b-d$ = \tm{intrinsic rate of
+increase} with units time$^{-1}$ (per individual per unit time, so
+individuals cancel).
+\ttitle{Discrete (non-overlapping generations).}
+\[
+N_{t+1}=\lambda N_t,\qquad N_t=N_0\lambda^{t}
+\]
+$\lambda$ = \tm{finite rate of increase} (geometric growth factor),
+dimensionless.
+\nr{44-popecology-r-lambda}{Relation between $r$ and $\lambda$}
+\[
+\lambda=e^{r},\qquad r=\ln\lambda
+\]
+Growth if $r>0$ or $\lambda>1$; stationary if $r=0$ or $\lambda=1$; decline if
+$r<0$ or $0<\lambda<1$. $\lambda$ can never be negative; $r$ can.
+\end{keybox}
+
+\begin{defbox}[title={DEFINITIONS: the several rates called $r$}]
+\nr{44-popecology-rmax}{Intrinsic rate of increase and biotic potential}
+\tm{$r_{\max}$} (also $r_m$, the intrinsic rate of natural increase, or
+\tm{biotic potential}) is the value of $r$ realized under ideal conditions:
+unlimited resources, optimal temperature, no crowding, no enemies. The
+\tm{observed} $r$ is lower by the amount of \tm{environmental resistance}, the
+sum of all limiting factors. A useful identity for a closed population:
+$r=b-d$; for an open one,
+$\Delta N=(B+I)-(D+E)$ with $B$ births, $D$ deaths, $I$ immigrants, $E$
+emigrants, and the per capita version is
+$r=(b+i)-(d+e)$.
+\nr{44-popecology-r-scaling}{Scaling of $r_{\max}$ with body size}
+$r_{\max}$ scales as roughly $M^{-0.26}$: \sn{Escherichia coli}
+$\approx 60$~day$^{-1}$ under optimum ($20$~min doubling), \sn{Paramecium}
+$\approx 1.0$~day$^{-1}$, a flour beetle $\approx 0.1$~day$^{-1}$, a rat
+$\approx 0.015$~day$^{-1}$, a human $\approx 0.0003$~day$^{-1}$
+($\approx 0.1$~yr$^{-1}$ at maximum), an elephant
+$\approx 0.0002$~day$^{-1}$. Small organisms recover from a crash in days, large
+ones in decades, and that single fact drives most conservation policy.
+\end{defbox}
+
+\begin{calcbox}[title={WORKED: doubling time and projection}]
+\nr{44-popecology-doubling}{Doubling time}
+Setting $N_t=2N_0$ in $N_t=N_0e^{rt}$ gives $2=e^{rt_2}$, so
+\[
+t_2=\frac{\ln 2}{r}=\frac{0.693}{r}
+\]
+\ttitle{Case 1, a bacterium.} \sn{E.~coli} in rich broth at $37\degc$ doubles in
+$20$~min, so
+$r=0.693/20=0.0347$~min$^{-1}$, i.e. $2.08$~h$^{-1}$ or $49.9$~day$^{-1}$.
+Starting from a single cell, after $10$~h ($600$~min):
+\[
+N=1\times e^{0.0347\times600}=e^{20.8}=1.1\times10^{9}
+\]
+Consistency check by doublings: $600/20=30$ doublings, $2^{30}=1.07\times10^{9}$.
+The two agree to within rounding. \tm{$\surd$}
+\ttitle{Case 2, a human population.} A country of $N_0=8.0\times10^{6}$ has a
+crude birth rate of $28$ per $1000$~yr$^{-1}$ and a crude death rate of $9$ per
+$1000$~yr$^{-1}$, with negligible migration.
+\[
+r=\frac{28-9}{1000}=0.019\ \mathrm{yr^{-1}}\quad(1.9\%\ \text{per year})
+\]
+Doubling time $t_2=0.693/0.019=36.5$~yr. The "rule of $70$" shortcut gives
+$70/1.9=36.8$~yr, which agrees because $70\approx 100\ln 2$.
+Population after $25$~yr:
+\[
+N=8.0\times10^{6}e^{0.019\times25}=8.0\times10^{6}e^{0.475}
+=8.0\times10^{6}\times1.608=1.29\times10^{7}
+\]
+\ttitle{Check.} $25$~yr is $0.685$ of a doubling time, and
+$2^{0.685}=1.609$, matching the factor $1.608$ obtained from the exponential.
+The absolute annual increment at the start is
+$rN=0.019\times8.0\times10^{6}=152\,000$ per year, and at the end
+$0.019\times1.29\times10^{7}=245\,000$ per year: $r$ is constant while the
+increment grows, which is the whole point of the model. \tm{$\surd$}
+\end{calcbox}
+
+\begin{warnbox}[title={TRAP: $r$, $\lambda$ and percentage growth are three different numbers}]
+\nr{44-popecology-r-trap}{Confusing $r$ with $\lambda$ and with percent growth}
+The wrong belief is that a population growing $10\%$ per year has $r=0.10$ and
+$\lambda=1.10$ interchangeably. If the growth is measured as a discrete annual
+census ratio, then $\lambda=1.10$ and $r=\ln 1.10=0.0953$, not $0.10$. The gap
+is small at $10\%$ (about $5\%$ relative) but reaches $\lambda=2.0$ against
+$r=0.693$ at high rates, a $44\%$ discrepancy. Two further traps: (i) a constant
+$r$ does not mean a constant number added, since $dN/dt=rN$ grows with $N$;
+(ii) exponential growth plotted on a log axis is a straight line whose slope
+\emph{is} $r$, so "straight line on a semi-log plot" means exponential, not
+linear.
+\end{warnbox}
+
+\begin{expbox}[title={EXPERIMENT: the Protection Island pheasants, 1937--1942}]
+\nr{44-popecology-pheasant}{Protection Island pheasant introduction}
+Eight ring-necked pheasants ($2$ males, $6$ females) were released on
+Protection Island, Washington, a $1.6$~km$^2$ predator-free island with no
+resident pheasants. Autumn counts over the next five breeding seasons gave
+approximately $40$, $100$, $400$, $770$ and $1740$ birds; the study ended when
+the army occupied the island. Fitting $N_t=N_0\lambda^t$ from $8$ to $1740$ over
+$5$ years gives
+$\lambda=(1740/8)^{1/5}=(217.5)^{0.2}=2.94$, so $r=\ln 2.94=1.08$~yr$^{-1}$ and a
+doubling time of $0.64$~yr. What it established: a vertebrate released into an
+empty, enemy-free habitat grows very close to geometrically for many
+generations, so the exponential model is not a mathematical fiction; and the
+realized $\lambda\approx 2.9$ was far above the mainland value near $1.1$,
+quantifying how much of the shortfall in ordinary populations is environmental
+resistance rather than low biotic potential.
+\end{expbox}
+
+\begin{obsbox}[title={WORTH NOTICING: why nothing grows exponentially for long}]
+\nr{44-popecology-exp-absurdity}{Absurdity check on exponential growth}
+A single \sn{E.~coli} doubling every $20$~min for $48$~h would give
+$2^{144}\approx 2\times10^{43}$ cells, about $10^{31}$~kg, roughly $10^{4}$ Earth
+masses. A pair of elephants at $r=0.0002$~day$^{-1}$ would, after $750$ years,
+cover the continents. Because exponential growth always collides with a finite
+resource, an observed exponential phase is a statement about the time window, not
+about the species. Real populations show it during colonization, after a
+disturbance, in the lag-free phase of a bacterial culture, and in humans from
+about $1750$ to $1970$, when $r$ peaked near $0.021$~yr$^{-1}$ in $1965$--$1970$
+and has since fallen to about $0.009$~yr$^{-1}$.
+\end{obsbox}
+
+\begin{tabular}{@{}lrrp{3.0cm}@{}}
+\toprule
+\textbf{Organism} & $\boldsymbol{r}$ \textbf{(day$^{-1}$)} & $\boldsymbol{t_2}$ & \textbf{Condition}\\
+\midrule
+\sn{E.~coli} & 50 & 20 min & Rich broth, $37\degc$\\
+\sn{Paramecium} & 1.0 & 17 h & $25\degc$, bacteria fed\\
+\sn{Daphnia} & 0.30 & 2.3 d & $20\degc$, algae\\
+Flour beetle & 0.10 & 6.9 d & Flour culture\\
+Norway rat & 0.015 & 46 d & Ideal, laboratory\\
+Human & 0.0003 & 6.3 yr & Maximum recorded\\
+\bottomrule
+\end{tabular}
+
+\section{Logistic growth: carrying capacity and the sigmoid curve}
+
+The logistic model is the simplest repair to the exponential: make the per capita
+growth rate fall linearly as the population fills the environment.
+
+\begin{keybox}[title={MEMORIZE: the logistic equation in three equivalent forms}]
+\nr{44-popecology-logistic}{Logistic growth model}
+\[
+\frac{dN}{dt}=rN\left(\frac{K-N}{K}\right)=rN\left(1-\frac{N}{K}\right)
+\]
+$K$ = \tm{carrying capacity}, the equilibrium population the environment
+sustains, in the same units as $N$. The bracket $(1-N/K)$ is the
+\tm{unused portion of the carrying capacity}, running from $1$ at $N\approx 0$ to
+$0$ at $N=K$.
+\ttitle{Per capita form.}
+\[
+\frac{1}{N}\frac{dN}{dt}=r\left(1-\frac{N}{K}\right)=r-\frac{r}{K}N
+\]
+a straight line of intercept $r$ and slope $-r/K$: plotting per capita growth
+against $N$ and getting a descending straight line is the signature of logistic
+dynamics, and the $x$-intercept is $K$.
+\ttitle{Integrated form.}
+\[
+N_t=\frac{K}{1+\left(\dfrac{K-N_0}{N_0}\right)e^{-rt}}
+\]
+\end{keybox}
+
+\begin{defbox}[title={DEFINITIONS: carrying capacity and environmental resistance}]
+\nr{44-popecology-K}{Carrying capacity}
+\tm{Carrying capacity} $K$ is the population size at which births balance
+deaths, set by the supply of the single most limiting resource: food, water,
+nest sites, territory space, refuges from predation, or the accumulation of
+waste. It is a property of the environment and the species jointly, not of the
+species alone.
+\nr{44-popecology-env-resistance}{Environmental resistance}
+\tm{Environmental resistance} is the difference between the exponential
+trajectory and the realized one; in the logistic it is exactly the factor
+$N/K$ of the potential growth that is lost.
+\nr{44-popecology-phases}{Phases of the sigmoid curve}
+The \tm{sigmoid} (S-shaped) curve has four phases: a \tm{lag} phase where $N$ is
+small and absolute increase is slow, an \tm{exponential} (log) phase where
+$N\ll K$ and the bracket is near $1$, a \tm{deceleration} phase past the
+inflection where crowding bites, and a \tm{plateau} phase where $N$ oscillates
+about $K$.
+\end{defbox}
+
+\begin{thmbox}[title={PRINCIPLE: maximum absolute growth occurs at $N=K/2$}]
+\nr{44-popecology-inflection}{Inflection point of the logistic at $K/2$}
+$dN/dt=rN-rN^2/K$ is a downward parabola in $N$ with roots at $N=0$ and $N=K$,
+so its maximum lies midway, at $N=K/2$. Substituting,
+\[
+\left(\frac{dN}{dt}\right)_{\max}=r\frac{K}{2}\left(1-\frac{1}{2}\right)
+=\frac{rK}{4}
+\]
+This value is the \tm{maximum sustainable yield} (MSY) of the logistic model, and
+$N=K/2$ is the stock size a fishery or forestry operation aims to hold. At
+$N=K/2$ the curve's inflection occurs, $d^2N/dt^2=0$, and the curve changes from
+concave up to concave down.
+\nr{44-popecology-msy}{Maximum sustainable yield}
+MSY $=rK/4$ at $N^*=K/2$ for the logistic; note that harvesting at exactly MSY
+leaves no margin, so any error or environmental downturn drives collapse, which
+is why real quotas are set at $0.5$ to $0.8$ of MSY and target stocks above
+$K/2$.
+\end{thmbox}
+
+\begin{calcbox}[title={WORKED: logistic growth rates and yield for a deer herd}]
+A deer herd has $r=0.40$~yr$^{-1}$ and $K=2000$.
+\ttitle{Growth rate at four sizes.}
+\[
+\frac{dN}{dt}=0.40\,N\left(1-\frac{N}{2000}\right)
+\]
+\begin{tabular}{@{}rrrr@{}}
+\toprule
+$N$ & $1-N/K$ & $dN/dt$ & Per capita $(1/N)dN/dt$\\
+\midrule
+100 & 0.950 & 38.0 & 0.380\\
+500 & 0.750 & 150.0 & 0.300\\
+1000 & 0.500 & 200.0 & 0.200\\
+1500 & 0.250 & 150.0 & 0.100\\
+1900 & 0.050 & 38.0 & 0.020\\
+\bottomrule
+\end{tabular}
+
+Arithmetic for $N=1000$: $0.40\times1000=400$; $400\times0.500=200.0$~yr$^{-1}$.
+For $N=1500$: $0.40\times1500=600$; $600\times0.250=150.0$~yr$^{-1}$.
+\ttitle{Maximum.} $rK/4=0.40\times2000/4=200$~yr$^{-1}$ at $N=1000=K/2$, matching
+the table.
+\ttitle{Time to reach $N=1000$ from $N_0=100$.} From the integrated form with
+$N_t=1000$:
+\[
+1000=\frac{2000}{1+19e^{-0.40t}}\ \Rightarrow\ 1+19e^{-0.40t}=2.0
+\ \Rightarrow\ e^{-0.40t}=\frac{1}{19}
+\]
+$t=\ln 19/0.40=2.944/0.40=7.36$~yr.
+\ttitle{Check, two ways.} First, the table is symmetric: $N=100$ and $N=1900$
+both give $38.0$, and $N=500$ and $N=1500$ both give $150.0$, as a parabola
+symmetric about $K/2$ must. Second, per capita growth falls linearly from
+$0.380$ at $N=100$ to $0.020$ at $N=1900$: the drop is $0.360$ over
+$\Delta N=1800$, a slope of $-2.0\times10^{-4}$, which equals
+$-r/K=-0.40/2000$ exactly. \tm{$\surd$}
+\end{calcbox}
+
+\begin{warnbox}[title={TRAP: what is maximal at $K/2$, and what $K$ is not}]
+\nr{44-popecology-logistic-trap}{Logistic misconceptions}
+Three errors the exam exploits.
+\begin{itemize}
+\item \tm{Per capita} growth is maximal at $N\rightarrow 0$, not at $K/2$. Only
+the \tm{absolute} rate $dN/dt$ peaks at $K/2$. A stem saying "individuals
+reproduce fastest" means per capita and the answer is the smallest $N$.
+\item $K$ is not a ceiling the population cannot exceed. Populations overshoot
+$K$ routinely, and then $dN/dt$ is negative because $(1-N/K)<0$, so the model
+itself predicts decline back toward $K$. A \tm{dieback} after an overshoot is
+logistic behaviour with a time lag, not a violation.
+\item $K$ is not a constant of the species. It changes with rainfall, season,
+fire, and management; a reindeer $K$ on St.~Matthew Island collapsed from
+roughly $5000$ to near zero when the lichen mat was eaten out, because the herd
+had destroyed the resource that set $K$.
+\end{itemize}
+\end{warnbox}
+
+\begin{expbox}[title={EXPERIMENT: Gause's \sn{Paramecium} cultures, 1934}]
+\nr{44-popecology-gause-logistic}{Gause's logistic cultures}
+G.~F.~Gause grew \sn{Paramecium caudatum} in $5$~mL of buffered salt medium with a
+fixed daily ration of \sn{Bacillus} cells, counting the whole culture daily.
+Numbers rose from $2$ individuals to a plateau near $60$--$65$ per $0.5$~mL
+(about $375$ per tube) in $\approx 12$ days, and the daily counts fitted the
+logistic curve with $r\approx 1.0$~day$^{-1}$; doubling the bacterial ration
+roughly doubled the plateau, while $r$ was unchanged. What it established: $K$
+is set by resource supply and $r$ by the organism, that the two parameters are
+separable and independently manipulable, and that the sigmoid is not an artefact
+of censusing but a real consequence of intraspecific competition for a renewable
+ration. Pearl and Reed had already fitted the same curve to the United States
+census from $1790$ to $1910$ in $1920$, predicting a plateau near
+$197$~million; the actual $2020$ figure of $331$~million shows that a curve
+fitting past data does not validate its extrapolation.
+\end{expbox}
+
+\begin{tabular}{@{}p{3.4cm}p{3.2cm}p{4.0cm}@{}}
+\toprule
+\textbf{Assumption} & \textbf{What it requires} & \textbf{How reality breaks it}\\
+\midrule
+$r$ and $K$ constant & Fixed environment & Seasons, drought change $K$ yearly\\
+No time lag & Instant response to density & Gestation, development give lags and overshoot\\
+Linear density effect & Each added individual costs the same & Allee effects at low $N$; thresholds at high $N$\\
+All individuals equal & No age or size structure & Juveniles neither breed nor compete equally\\
+Closed population & No migration & Immigration props up sink populations\\
+No genetic change & Fixed vital rates & Selection can raise $r$ or $K$ in tens of generations\\
+\bottomrule
+\end{tabular}
+
+\begin{obsbox}[title={WORTH NOTICING: the Allee effect inverts the logistic at low $N$}]
+\nr{44-popecology-allee}{Allee effect}
+The logistic says per capita growth is highest when $N$ is smallest. For social
+and sexually reproducing species the opposite holds below a threshold: mates
+become hard to find, group defence fails, cooperative hunting breaks down, and
+per capita growth falls with falling $N$. This is the \tm{Allee effect}, and a
+\tm{strong} Allee effect creates a second equilibrium, an extinction threshold
+$A$, below which the population is doomed:
+\[
+\frac{dN}{dt}=rN\left(1-\frac{N}{K}\right)\left(\frac{N}{A}-1\right)
+\]
+The passenger pigeon, which nested in colonies of millions and failed to breed in
+small flocks, is the standard example; the last wild bird was shot in $1900$ and
+the species was extinct by $1914$ despite thousands still alive in $1890$.
+Conservation consequence: a minimum viable population is usually quoted in the
+range $50$ to $500$ breeding adults for short-term and long-term persistence
+respectively, the "$50/500$ rule", now often revised upward to $100/1000$.
+\end{obsbox}

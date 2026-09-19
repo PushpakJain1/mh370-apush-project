@@ -40,3 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .env*.local
+
+# usabo compendium build artifacts
+/usabo-compendium/source/build/
+/usabo-compendium/source/__pycache__/
+/usabo-compendium/stage/
+/usabo-compendium/dist/

@@ -1,0 +1,47 @@
+% Shared sheet rendering, used by the omnibus sheet and by every topic volume.
+\makeatletter
+\renewcommand{\memtier}[1]{%
+  \clearpage\vspace*{4pt}\noindent{\color{bioink}\rule{\textwidth}{4pt}}\\[6pt]
+  \noindent\begin{minipage}{\textwidth}\raggedright
+    {\sffamily\bfseries\fontsize{24}{28}\selectfont\color{bioink}%
+     \hyphenchar\font=-1\hyphenpenalty=10000\exhyphenpenalty=10000 #1\par}%
+  \end{minipage}\vspace{8pt}%
+  \addcontentsline{toc}{part}{#1}}
+\makeatother
+% ---- The sheet's own look -----------------------------------------------
+% Single column: a formula needs the full measure, and narrow columns crush
+% the long ones. The third argument of \mem and \thm carries the explanatory
+% note and is deliberately dropped here, since this is the bare sheet.
+% A formula is the whole point, so when one exists it is all that is shown and
+% the explanatory note is dropped. When an entry has no formula, its content is
+% inherently verbal, and the note is shown instead so the entry is not a bare
+% heading with nothing under it.
+\renewcommand{\mem}[3]{%
+  \index{#1}%
+  \par\vspace{3pt}\noindent{\sffamily\bfseries\footnotesize\color{bioink}#1}%
+  \ifblank{#2}{%
+    \ifblank{#3}{}{\par\vspace{1pt}\noindent\hspace{12pt}%
+      \begin{minipage}{\dimexpr\textwidth-12pt\relax}\footnotesize\raggedright
+      \hyphenpenalty=10000\exhyphenpenalty=10000 #3\end{minipage}}%
+  }{\par\vspace{1pt}\noindent\hspace{12pt}%
+    \adjustbox{max width=\dimexpr\textwidth-12pt\relax}{$\displaystyle #2$}}%
+  \par}
+\renewcommand{\thm}[3]{%
+  \index{#1}%
+  \par\vspace{3pt}\noindent{\sffamily\bfseries\footnotesize\color{bioink}#1}%
+  \par\vspace{1pt}\noindent\hspace{12pt}%
+  \begin{minipage}{\dimexpr\textwidth-12pt\relax}\footnotesize\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000 #2\end{minipage}\par}
+\newcommand{\bandhead}[1]{%
+  \par\vspace{10pt}\noindent%
+  \colorbox{biogrey}{\parbox{\dimexpr\textwidth-8pt\relax}{%
+    \sffamily\bfseries\scriptsize\color{biogreen}\strut\,\MakeUppercase{#1}\strut}}%
+  \par\vspace{4pt}}
+\renewcommand{\memsec}[1]{\bandhead{#1}}
+\renewcommand{\catsec}[1]{\bandhead{#1}}
+\renewcommand{\memtable}[1]{\par\vspace{4pt}\noindent\hspace*{12pt}%
+  \adjustbox{max width=\dimexpr\textwidth-12pt\relax}{\footnotesize #1}\par\vspace{4pt}}
+\renewcommand{\mempart}[1]{%
+  \vspace{13pt}\noindent{\sffamily\bfseries\large\color{biogreen}#1\par}
+  \noindent{\color{biogreen}\rule{\textwidth}{0.9pt}}\par\vspace{2pt}
+  \addcontentsline{toc}{section}{#1}\markboth{#1}{#1}}
+
