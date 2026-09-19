@@ -77,9 +77,11 @@ def build_volumes():
             body = (HEAD.replace('%TITLE%', title).replace('%TIERLABEL%', label)
                         .replace('%BLURB%', blurb).replace('%RULE%', rule))
             body += '\\memtier{Part One. Learn It}\n'
-            body += '\\InputIfFileExists{sections/%s}{}{}\n' % stem
+            for c in (1, 2, 3):
+                body += '\\InputIfFileExists{sections/%s-%d}{}{}\n' % (stem, c)
             body += '\\memtier{Part Two. Memorize It}\n'
-            body += '\\InputIfFileExists{memo/%s}{}{}\n' % stem
+            for c in (1, 2):
+                body += '\\InputIfFileExists{memo/%s-%d}{}{}\n' % (stem, c)
             body += TAIL
             p = os.path.join(SRC, 'topics', folder, volume_filename(num, title))
             write(p, body)
@@ -87,8 +89,8 @@ def build_volumes():
     for num, title, stem, key, subtitle, ca, cb in CATALOGUE:
         body = (HEAD.replace('%TITLE%', title).replace('%TIERLABEL%', 'THE REFERENCE CATALOGUE')
                     .replace('%BLURB%', CAT_BLURB).replace('%RULE%', 'tiercat'))
-        body += '\\InputIfFileExists{catalogue/%s-a}{}{}\n' % stem
-        body += '\\InputIfFileExists{catalogue/%s-b}{}{}\n' % stem
+        for c in ('a1', 'a2', 'b1', 'b2'):
+            body += '\\InputIfFileExists{catalogue/%s-%s}{}{}\n' % (stem, c)
         body += TAIL
         p = os.path.join(SRC, 'topics', '03-Reference-Catalogue', volume_filename(num, title))
         write(p, body)
@@ -153,14 +155,19 @@ def build_master_indexes():
                                'where it is taught.'))
     body += '\\memtier{Tier One. The Core Syllabus}\n'
     for num, title, stem, key, subtitle, a, b in TIER1:
-        body += '\\mempart{%s}\n\\InputIfFileExists{memo/%s}{}{}\n' % (title.replace('&', 'and'), stem)
+        body += '\\mempart{%s}\n' % title.replace('&', 'and')
+        for c in (1, 2):
+            body += '\\InputIfFileExists{memo/%s-%d}{}{}\n' % (stem, c)
     body += '\\memtier{Tier Two. Beyond the Syllabus}\n'
     for num, title, stem, key, subtitle, a, b in TIER2:
-        body += '\\mempart{%s}\n\\InputIfFileExists{memo/%s}{}{}\n' % (title.replace('&', 'and'), stem)
+        body += '\\mempart{%s}\n' % title.replace('&', 'and')
+        for c in (1, 2):
+            body += '\\InputIfFileExists{memo/%s-%d}{}{}\n' % (stem, c)
     body += '\\memtier{The Reference Catalogue}\n'
     for num, title, stem, key, subtitle, a, b in CATALOGUE:
-        body += ('\\mempart{%s}\n\\InputIfFileExists{catalogue/%s-a}{}{}\n\\InputIfFileExists{catalogue/%s-b}{}{}\n'
-                 % (title.replace('&', 'and'), stem, stem))
+        body += '\\mempart{%s}\n' % title.replace('&', 'and')
+        for c in ('a1', 'a2', 'b1', 'b2'):
+            body += '\\InputIfFileExists{catalogue/%s-%s}{}{}\n' % (stem, c)
     body += TAIL
     write(os.path.join(SRC, 'main-index-concepts.tex'), body)
 
@@ -174,7 +181,9 @@ def build_master_indexes():
                                'disagree. The derivations and the worked calculations are in the volumes.'))
     body += '\\memtier{Every Formula, Subject by Subject}\n'
     for num, title, stem, key, subtitle, a, b in FORMULAS:
-        body += '\\mempart{%s}\n\\InputIfFileExists{memo/%s}{}{}\n' % (title.replace('&', 'and'), stem)
+        body += '\\mempart{%s}\n' % title.replace('&', 'and')
+        for c in (1, 2):
+            body += '\\InputIfFileExists{memo/%s-%d}{}{}\n' % (stem, c)
     body += TAIL
     write(os.path.join(SRC, 'main-index-formulas.tex'), body)
     return ['main-index-concepts.tex', 'main-index-formulas.tex']

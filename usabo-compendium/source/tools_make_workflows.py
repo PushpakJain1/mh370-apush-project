@@ -1,131 +1,169 @@
 #!/usr/bin/env python3
-"""Emit one Workflow script per batch of volumes. Each volume gets a prose agent then a sheet agent."""
+"""Emit one Workflow script per batch of volumes.
+
+Each volume gets a prose agent, which writes its volume in three numbered chunk files,
+then a sheet agent, which writes the matching memorization sheet in two chunk files.
+Chunking means an interrupted agent loses one chunk, not a whole volume, and it keeps
+each single Write inside a comfortable response size.
+"""
 import json, os, sys
 from manifest import TIER1, TIER2, CATALOGUE, FORMULAS
 
 SRC = '/home/user/mh370-apush-project/usabo-compendium/source'
 OUT = sys.argv[1] if len(sys.argv) > 1 else '/tmp/wf'
 GUIDE = SRC + '/STYLE-GUIDE.md'
+EXAM = ("the USA Biology Olympiad Open Exam, the USABO Semifinal Exam, and the International "
+        "Biology Olympiad")
 
-EXAM = ("the USA Biology Olympiad Open Exam, the USABO Semifinal Exam, and the International Biology "
-        "Olympiad")
+HYGIENE = """- Plain ASCII only: no Unicode at all. Write $\\alpha$, $\\rightarrow$, $\\times$, $\\approx$, $\\leq$, $\\pm$, $37\\degc$, $10\\dg$, never the character itself.
+- Escape %, &, _, # and $ in ordinary text. An unescaped %% eats the rest of the line.
+- Math in $...$ or \\[...\\], never $$...$$. Chemistry may use \\ce{...}.
+- No \\usepackage, \\documentclass, \\begin{document}, \\newcommand, \\label, \\ref, \\includegraphics, tikzpicture, figure, table float, or \\multirow.
+- Every environment you open, you close. Never nest one box inside another."""
 
-PROSE = """Write one prose teaching volume of a LaTeX biology compendium aimed at {exam}.
+PROSE = """Write chunk {chunk} of 3 of one prose teaching volume of a LaTeX biology compendium aimed at {exam}.
 
-STEP 1. Read {guide} in full. It is the binding contract for this file; every rule in it breaks the build if ignored.
-STEP 2. Read {example} for the house style. It is a six page stub. Yours is a full volume, twenty times longer.
-
+{step1}
 VOLUME: {title}
-The very first line of your file must be exactly:
-\\parttitle[{key}]{{{title}}}{{{subtitle}}}
+YOUR CHUNK: this file carries outline items {span} of the volume's {total}. The other chunks are written by you in the same run, in order, so do not repeat or pre-empt their material.
 
-COVER EXACTLY THIS GROUND, one \\section per numbered item, in this order:
+{firstline}COVER EXACTLY THIS GROUND, one \\section per numbered item, in this order:
 {outline}
 
-REQUIREMENTS
-- One \\section per outline item, same order, same scope. Do not merge, drop, or reorder items.
-- Inside each \\section: 4 to 8 boxes (keybox, thmbox, defbox, calcbox, expbox, tipbox, warnbox, obsbox) with connecting prose between them. Choose the box whose job matches the content.
-- At least 120 \\nr{{...}}{{...}} named results across the file. Every label must start with "{stem}-" so it stays unique across the compendium.
-- At least 8 warnbox traps, 6 calcbox worked calculations with the arithmetic shown and a numerical check, 4 expbox landmark experiments, and 10 tabular tables.
-- Numbers everywhere: concentrations, potentials, rates, yields, sizes, percentages, normal values, and the ranges where sources disagree. A biology volume without numbers is worthless for this exam.
-- Name the exam trap wherever one exists. Explain mechanism, never just terminology.
-- Plain ASCII only. Escape %, &, _, #. Math in $...$ or \\[...\\]. Chemistry may use \\ce{{...}}.
-- Target 70000 to 95000 characters of LaTeX. This is a complete teaching text.
+REQUIREMENTS FOR THIS CHUNK
+- One \\section per outline item above, same order, same scope. Do not merge, drop or reorder.
+- Inside each \\section: 4 to 8 boxes (keybox, thmbox, defbox, calcbox, expbox, tipbox, warnbox, obsbox) with connecting prose between them. Pick the box whose job matches the content.
+- At least {nrs} \\nr{{label}}{{Index Name}} named results in this chunk. Every label starts with "{stem}-" so it is unique across the compendium.
+- At least {traps} warnbox traps, {calcs} calcbox worked calculations with the arithmetic shown and a numerical check, {exps} expbox landmark experiments, and {tabs} tabular tables in this chunk.
+- Numbers everywhere: concentrations, potentials, rates, yields, sizes, percentages, normal values, and the range where sources disagree. A biology volume without numbers is useless for this exam.
+- Name the exam trap wherever one exists. Teach mechanism, never terminology alone.
+{hygiene}
+- Target {chars} characters for this chunk.
 
-Write the file with the Write tool to exactly this path:
+Write it with the Write tool to exactly:
 {path}
-Then run: grep -c '\\\\section' on it, wc -c on it, and grep -n 'usepackage\\|documentclass\\|begin{{document}}\\|newcommand' on it. If that last grep finds anything, fix the file. Create no other file. Do not run pdflatex.
 
-Return JSON only."""
+Then write the next chunk, in the same way, to its own path. The three paths are:
+{allpaths}
 
-MEMO = """Write the bare memorization sheet that accompanies one volume of a LaTeX biology compendium aimed at {exam}.
+After all three exist, run wc -c on each and grep -c '\\\\section' on each, and grep -n 'usepackage\\|documentclass\\|newcommand' across all three, fixing anything that grep finds. Create no other file. Do not run pdflatex.
 
-STEP 1. Read {guide} in full, especially the section on memorization sheet files, and read {memoexample} for the house format.
-STEP 2. Read the prose volume this sheet must mirror: {source}
-Every named result, formula, value, term, table and number in that file must appear in your sheet. The sheet is what a student revises from the night before the exam, so nothing may be missing and no entry may need the prose to make sense.
+Return JSON only, reporting the totals across all three files."""
+
+MEMO = """Write the bare memorization sheet for one volume of a LaTeX biology compendium aimed at {exam}, in two chunk files.
+
+STEP 1. Read {guide} in full, especially the part on memorization sheet files, then read {memoexample} for the house format.
+STEP 2. Read all three prose chunks this sheet must mirror:
+{sources}
+Every named result, formula, value, term, table and number in those files must appear in your sheet. This sheet is what a student revises from the night before the exam: nothing may be missing and no entry may need the prose to make sense.
 
 VOLUME: {title}
 
 REQUIREMENTS
 - Use only \\memsec, \\mem and \\memtable. No prose, no boxes, no \\section, no \\parttitle.
-- \\memsec headings follow the \\section order of the prose file.
-- At least {mems} \\mem entries.
-- \\mem{{name}}{{formula}}{{note}}: the second argument is display math already, so write K_m not $K_m$. When the entry has a formula, put it there and the note is dropped from the bare sheet, so the formula must stand alone. When the entry is verbal, pass {{}} and make the note a complete standalone statement of the fact.
+- \\memsec headings follow the \\section order of the prose chunks. File 1 covers the first prose chunk and the first half of the second; file 2 covers the rest.
+- At least {mems} \\mem entries per file.
+- \\mem{{name}}{{formula}}{{note}}: the second argument is already display math, so write K_m not $K_m$. When there is a formula, put it there, because the note is then dropped from the bare sheet and the formula must stand alone. When the fact is verbal, pass {{}} and make the note a complete standalone statement.
 - Carry over every table of values as \\memtable with a tabular inside.
-- Plain ASCII only. Escape %, &, _, # in the note argument.
-- Target {chars} characters.
+{hygiene}
+- Target {chars} characters per file.
 
-Write the file with the Write tool to exactly this path:
-{path}
-Then run: grep -c '\\\\mem{{' on it and wc -c on it. Create no other file.
+Write the two files with the Write tool to exactly these paths, in order:
+{allpaths}
 
-Return JSON only."""
+Then run grep -c '\\\\mem{{' and wc -c on each. Create no other file.
 
-CAT = """Write one part of a reference catalogue volume for a LaTeX biology compendium aimed at {exam}.
+Return JSON only, reporting the totals across both files."""
 
-STEP 1. Read {guide} in full, especially the section on catalogue files.
+CAT = """Write part {ab} of a reference catalogue volume for a LaTeX biology compendium aimed at {exam}, in two chunk files.
+
+STEP 1. Read {guide} in full, especially the part on catalogue files.
 
 CATALOGUE VOLUME: {title}
-YOUR PART: part {ab} of two.
+YOUR PART: part {ab} of two. The other part is written by a different agent, so stay inside the sub-areas listed here.
 
-COVER EXACTLY THESE SUB-AREAS, one \\catsec each, in order:
+COVER EXACTLY THESE SUB-AREAS, one \\catsec each, in order. File 1 takes sub-areas 1 and 2, file 2 takes sub-areas 3 and 4:
 {outline}
 
 REQUIREMENTS
 - Use only \\catsec and \\thm. No prose, no boxes, no \\section, no \\parttitle.
-- \\thm{{Name}}{{Precise statement with the conditions under which it holds}}{{optional line on origin, use, or the number worth remembering}}
-- At least 200 \\thm entries. Be exhaustive: this volume's job is that nothing named in this area is missing.
+- \\thm{{Name}}{{Precise statement, with the conditions under which it holds}}{{optional line on origin, use, or the number worth remembering}}
+- At least 110 \\thm entries per file. Be exhaustive: this volume's job is that nothing named in its area is missing.
 - Each statement is one to four sentences, self-contained, precise, with the numbers. No worked examples.
-- Entries are sorted into the sub-areas above, and within a sub-area ordered from most to least fundamental.
-- Plain ASCII only. Escape %, &, _, #. Math in $...$. Chemistry may use \\ce{{...}}.
-- Target 90000 to 130000 characters.
+- Within a sub-area, order entries from most to least fundamental.
+{hygiene}
+- Target 55000 to 70000 characters per file.
 
-Write the file with the Write tool to exactly this path:
-{path}
-Then run: grep -c '\\\\thm{{' on it and wc -c on it. Create no other file.
+Write the two files with the Write tool to exactly these paths, in order:
+{allpaths}
 
-Return JSON only."""
+Then run grep -c '\\\\thm{{' and wc -c on each. Create no other file.
+
+Return JSON only, reporting the totals across both files."""
 
 SCHEMA = {
     "type": "object",
     "properties": {
-        "path": {"type": "string"},
-        "chars": {"type": "integer"},
-        "entries": {"type": "integer", "description": "count of sections, mem entries, or thm entries"},
+        "files_written": {"type": "integer"},
+        "chars_total": {"type": "integer"},
+        "entries_total": {"type": "integer", "description": "sections, mem entries or thm entries across all files"},
         "coverage": {"type": "string", "description": "one line: anything from the outline you could not cover"},
     },
-    "required": ["path", "chars", "entries"],
+    "required": ["files_written", "chars_total", "entries_total"],
 }
 
-EXAMPLE = SRC + '/EXAMPLE-section.tex'
+STEP1 = ("STEP 1. Read %s in full. It is the binding contract for this file and every rule in it "
+         "breaks the build if ignored.\nSTEP 2. Read %s for the house style. It is a six page stub; "
+         "a full volume is twenty times longer.\n\n" % (GUIDE, SRC + '/EXAMPLE-section.tex'))
 
 
-def numbered(items):
-    return '\n'.join('%d. %s' % (i + 1, s) for i, s in enumerate(items))
+def numbered(items, start=1):
+    return '\n'.join('%d. %s' % (i, s) for i, s in enumerate(items, start))
+
+
+def split3(items):
+    n = len(items)
+    a = (n + 2) // 3
+    b = (n - a + 1) // 2
+    return items[:a], items[a:a + b], items[a + b:]
 
 
 def prose_job(num, title, stem, key, subtitle, oa, ob):
-    return {
-        "stem": stem,
-        "label": stem,
-        "prose": PROSE.format(exam=EXAM, guide=GUIDE, example=EXAMPLE, title=title, key=key,
-                              subtitle=subtitle, outline=numbered(list(oa) + list(ob)), stem=stem,
-                              path='%s/sections/%s.tex' % (SRC, stem)),
-        "memo": MEMO.format(exam=EXAM, guide=GUIDE, memoexample=SRC + '/EXAMPLE-memo.tex', source='%s/sections/%s.tex' % (SRC, stem),
-                            title=title, mems=180, chars='40000 to 60000',
-                            path='%s/memo/%s.tex' % (SRC, stem)),
-    }
+    items = list(oa) + list(ob)
+    groups = split3(items)
+    paths = ['%s/sections/%s-%d.tex' % (SRC, stem, i) for i in (1, 2, 3)]
+    allpaths = '\n'.join('  chunk %d: %s' % (i + 1, p) for i, p in enumerate(paths))
+    chunks = []
+    offset = 1
+    for i, g in enumerate(groups, 1):
+        span = '%d to %d' % (offset, offset + len(g) - 1)
+        first = ('The very first line of this file must be exactly:\n'
+                 '\\parttitle[%s]{%s}{%s}\n\n' % (key, title, subtitle)) if i == 1 else \
+                'This file starts straight into its first \\section, with no \\parttitle.\n\n'
+        chunks.append(PROSE.format(chunk=i, exam=EXAM, step1=STEP1 if i == 1 else '', title=title,
+                                   span=span, total=len(items), firstline=first,
+                                   outline=numbered(g, offset), stem=stem, nrs=45, traps=3,
+                                   calcs=2, exps=2, tabs=4, hygiene=HYGIENE,
+                                   chars='28000 to 38000', path=paths[i - 1], allpaths=allpaths))
+        offset += len(g)
+    mpaths = ['%s/memo/%s-%d.tex' % (SRC, stem, i) for i in (1, 2)]
+    memo = MEMO.format(exam=EXAM, guide=GUIDE, memoexample=SRC + '/EXAMPLE-memo.tex',
+                       sources='\n'.join('  ' + p for p in paths), title=title, mems=110,
+                       hygiene=HYGIENE, chars='24000 to 32000',
+                       allpaths='\n'.join('  file %d: %s' % (i + 1, p) for i, p in enumerate(mpaths)))
+    return {"stem": stem, "label": stem, "prose": '\n\n=====\n\n'.join(chunks), "memo": memo}
 
 
 def cat_jobs(num, title, stem, key, subtitle, ca, cb):
     jobs = []
     for ab, outline in (('a', ca), ('b', cb)):
+        paths = ['%s/catalogue/%s-%s%d.tex' % (SRC, stem, ab, i) for i in (1, 2)]
         jobs.append({
             "stem": '%s-%s' % (stem, ab),
             "label": '%s-%s' % (stem, ab),
             "prose": CAT.format(exam=EXAM, guide=GUIDE, title=title, ab=ab.upper(),
-                                outline=numbered(outline),
-                                path='%s/catalogue/%s-%s.tex' % (SRC, stem, ab)),
+                                outline=numbered(outline), hygiene=HYGIENE,
+                                allpaths='\n'.join('  file %d: %s' % (i + 1, p) for i, p in enumerate(paths))),
             "memo": None,
         })
     return jobs
@@ -162,15 +200,15 @@ def chunks(seq, n):
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
     plan = []
-    for i, group in enumerate(chunks([prose_job(*v) for v in TIER1], 7), 1):
-        plan.append(emit('usabo-core-%d' % i, 'Core syllabus volumes, batch %d: prose then memorization sheet' % i, group))
-    for i, group in enumerate(chunks([prose_job(*v) for v in TIER2], 5), 1):
-        plan.append(emit('usabo-beyond-%d' % i, 'Beyond-the-syllabus volumes, batch %d' % i, group))
-    for i, group in enumerate(chunks([prose_job(*v) for v in FORMULAS], 7), 1):
-        plan.append(emit('usabo-formulas-%d' % i, 'Formula volumes, batch %d: derivations then bare formula sheet' % i, group))
+    for i, g in enumerate(chunks([prose_job(*v) for v in TIER1], 7), 1):
+        plan.append(emit('usabo-core-%d' % i, 'Core syllabus volumes, batch %d' % i, g))
+    for i, g in enumerate(chunks([prose_job(*v) for v in TIER2], 5), 1):
+        plan.append(emit('usabo-beyond-%d' % i, 'Beyond-the-syllabus volumes, batch %d' % i, g))
+    for i, g in enumerate(chunks([prose_job(*v) for v in FORMULAS], 7), 1):
+        plan.append(emit('usabo-formulas-%d' % i, 'Formula volumes, batch %d' % i, g))
     catj = [j for v in CATALOGUE for j in cat_jobs(*v)]
-    for i, group in enumerate(chunks(catj, 7), 1):
-        plan.append(emit('usabo-catalogue-%d' % i, 'Reference catalogue parts, batch %d' % i, group))
+    for i, g in enumerate(chunks(catj, 7), 1):
+        plan.append(emit('usabo-catalogue-%d' % i, 'Reference catalogue parts, batch %d' % i, g))
     for p, n in plan:
-        print('%-70s %d jobs' % (p, n))
-    print('%d workflows, %d volumes-or-parts' % (len(plan), sum(n for _, n in plan)))
+        print('%-46s %d jobs' % (os.path.basename(p), n))
+    print('%d workflows, %d jobs' % (len(plan), sum(n for _, n in plan)))
